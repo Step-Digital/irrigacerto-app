@@ -7,7 +7,7 @@ export const Container = styled.View`
     flex-direction: column;
     justify-content: space-between;
     padding: 48px 24px 32px 32px;
-    margin-top: 32px;
+    margin-top: 24px;
   `}
 `;
 

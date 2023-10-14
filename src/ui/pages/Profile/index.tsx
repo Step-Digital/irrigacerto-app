@@ -83,58 +83,6 @@ export const Profile: React.FC<ProfileProps> = ({ auth, propertyService }) => {
               editable={false}
               style={{ color: "black" }}
             />
-            <S.Label>{inputStrings.phone1.label}</S.Label>
-            <S.ContainerInput>
-              <MaskInput
-                value={(data && data.data[0].user.telefone1) || "---"}
-                editable={false}
-                style={{ color: "black" }}
-                mask={[
-                  "(",
-                  /\d/,
-                  /\d/,
-                  ")",
-                  " ",
-                  /\d/,
-                  /\d/,
-                  /\d/,
-                  /\d/,
-                  /\d/,
-                  "-",
-                  /\d/,
-                  /\d/,
-                  /\d/,
-                  /\d/,
-                ]}
-              />
-            </S.ContainerInput>
-            <S.Label>{inputStrings.phone2.label}</S.Label>
-            <View>
-              <S.ContainerInput>
-                <MaskInput
-                  value={(data && data.data[0].user.telefone2) || "---"}
-                  editable={false}
-                  style={{ color: "black" }}
-                  mask={[
-                    "(",
-                    /\d/,
-                    /\d/,
-                    ")",
-                    " ",
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                    "-",
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                  ]}
-                />
-              </S.ContainerInput>
-            </View>
             <S.Label>{inputStrings.cel.label}</S.Label>
             <View>
               <S.ContainerInput>
