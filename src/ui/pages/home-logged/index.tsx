@@ -178,7 +178,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   });
 
   function disableButton() {
-    if (allData.data.length === 0) return true;
+    if (allData && allData === undefined) return true;
     return false;
   }
 
@@ -466,9 +466,10 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
               </S.PropertyContainer>
             </ScrollView>
           )}
-
+          {console.log('allData', allData)}
+          {console.log('isSomeCulture', isSomeCulture)}
           <S.Content>
-            {allData && !isSomeCulture && (
+            {!isSomeCulture && (
               <>
                 <Image
                   source={require("../../../../assets/culture.png")}
@@ -494,7 +495,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                 </Typography>
               </>
             )}
-
+  
             {allData && allData.data.length === 0 && (
               <Typography
                 style={{
