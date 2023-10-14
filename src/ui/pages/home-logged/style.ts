@@ -16,7 +16,7 @@ export const Content = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 32px;
 `;
 
 export const ButtonContainer = styled.View`

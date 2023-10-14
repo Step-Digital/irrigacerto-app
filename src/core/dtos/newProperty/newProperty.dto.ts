@@ -34,7 +34,7 @@ export type SystemInfoDTO = {
   eficiencia_irrigacao: number;
   area_total_plantio: number;
   quantidade_setores: number;
-  tipo_irrigacao: string;
+  tipo_irrigacao: number;
   nome_setor: string;
   area_irrigada: number;
   espacamento_linha: number;

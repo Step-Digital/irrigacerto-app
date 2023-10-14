@@ -111,7 +111,7 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
     eficiencia_irrigacao: Number(eficiencia_irrigacao),
     area_total_plantio: Number(area_total_plantio),
     quantidade_setores: Number(quantidade_setores),
-    tipo_irrigacao,
+    tipo_irrigacao: tipo_irrigacao === 'Aspersão Convencional' ? 2 : 1,
     nome_setor,
     area_irrigada: Number(area_irrigada),
     espacamento_linha: Number(espacamento_linha),

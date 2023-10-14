@@ -11,6 +11,7 @@ export const Container = styled.View<ContainerProps>`
     display: flex;
     padding: 40px 16px 12px 16px;
     border-radius: ${minHeader ?  0 : '0px 0px 24px 24px'};
+    margin-top: 32px;
   `}
 `;
 
