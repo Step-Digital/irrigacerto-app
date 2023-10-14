@@ -53,7 +53,7 @@ export class NewPropertyRepository implements NewPropertyDomain {
   async getAllPropertiesItems(token: string): Promise<any> {
     const {
       data,
-    } = await this.httpClient.get<any>("/propriedade/allPropertyItems", {
+    } = await this.httpClient.get<any>("/propriedade/findAllPropertyItems", {
       headers: {
         ["Authorization"]: `Bearer ${token}`
       }

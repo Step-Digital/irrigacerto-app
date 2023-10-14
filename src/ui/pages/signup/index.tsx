@@ -134,7 +134,7 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={{
-        paddingTop: 25,
+        paddingTop: 42,
         paddingBottom: 25,
       }}
     >
@@ -198,12 +198,16 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
             value={password}
             onChangeText={(value) => setPassword(value)}
           />
+          <View>
+
           <Input
             label={inputStrings.passwordConfirm.label}
             placeholder={inputStrings.passwordConfirm.placeholder}
             value={passwordConfirm}
             onChangeText={(value) => setPasswordConfirm(value)}
-          />
+            />
+            </View>
+
           <Typography
             style={{
               marginVertical: 15,
@@ -212,7 +216,7 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
             color="positive"
             size="huge"
             weight="regular"
-          >
+            >
             Endereço
           </Typography>
           <S.Label>{inputStrings.cep.label}</S.Label>

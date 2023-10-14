@@ -8,6 +8,7 @@ import { strings } from "../../../utils";
 
 import * as S from './styles';
 import { Button } from '../button';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const OnboardingModal = () => {
   const [progressActive, setProgessActive] = useState(1);
@@ -36,7 +37,10 @@ export const OnboardingModal = () => {
           >
             {strings.modal.title}
           </Typography>
-          <S.CloseModalButton onPress={() => setShowModal(false)}>
+          <S.CloseModalButton onPress={() => {
+            AsyncStorage.setItem('firstAccess', 'primeiro')
+            setShowModal(false)
+            }}>
             <AntDesign name="close" size={24} color="gray" />
           </S.CloseModalButton>
         </S.TitleContainer>
@@ -214,7 +218,10 @@ export const OnboardingModal = () => {
            <Button 
             bg-color='positive'
             style={{ display: 'flex', width: '100%', marginTop: 16, height: 44}}
-            onPress={() => setShowModal(false)}
+            onPress={() => {
+              AsyncStorage.setItem('firstAccess', 'primeiro')
+              setShowModal(false)
+            }}
           >
             <Typography
               style={{

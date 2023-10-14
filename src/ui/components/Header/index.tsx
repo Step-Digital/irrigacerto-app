@@ -13,6 +13,7 @@ interface HeaderProps {
   minTitle?: string;
   action?: () => void;
   isFinalStep?: boolean;
+  isEdit?: boolean;
 }
 
 export const Header = ({
@@ -20,6 +21,7 @@ export const Header = ({
   minTitle,
   action,
   isFinalStep,
+  isEdit
 }: HeaderProps) => {
   const navigation = useNavigation<NavigationProps>();
 
@@ -48,11 +50,11 @@ export const Header = ({
               )}
             </S.BackButton>
             <S.MinTitle>{minTitle}</S.MinTitle>
-            <S.CloseButton onPress={() => navigation.navigate("HomeLogged")}>
-              {!isFinalStep && (
-                <AntDesign name="close" size={24} color="#fff" />
-              )}
-            </S.CloseButton>
+              <S.CloseButton onPress={() => isEdit ? action() : navigation.navigate("HomeLogged")}>
+                {!isFinalStep && (
+                  <AntDesign name="close" size={24} color="#fff" />
+                )}
+              </S.CloseButton>
           </>
         )}
       </S.HeaderContainer>

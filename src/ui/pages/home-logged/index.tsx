@@ -9,6 +9,7 @@ import { strings } from "../../../utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import MaskInput from "react-native-mask-input";
 import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as S from "./style";
 import { OnboardingModal } from "../../components/OnboardingModal";
@@ -75,6 +76,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   cultureService,
 }) => {
   const [openButtonsMOdal, setOpenButtonsModal] = useState(false);
+  const [isFirstAccess, setIsFirstAccess] = useState(AsyncStorage.getItem('firstAccess') || 'true')
   const [showProperties, setShowProperties] = useState(null);
   const [cultureSelected, setCultureSelected] =
     useState<CultureSelectedProps>(null);
@@ -296,6 +298,19 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   //     setSelectedEditSystem(cultureSelected.sistema_irrigacao.nome);
   //   }
   // }, [cultureSelected]);
+
+
+  const getFirst = async () => {
+    const token = await AsyncStorage.getItem('firstAccess')
+    console.log('token', token)
+    setIsFirstAccess(token)
+  }
+
+  console.log('isFirstAccess', isFirstAccess)
+
+  useEffect(() => {
+    getFirst()
+  }, [])
 
   return (
     <>
@@ -587,7 +602,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
               </S.AddPropertyButton>
             </S.ButtonModalContainer>
           )}
-          <OnboardingModal />
+         {isFirstAccess !== 'primeiro' && <OnboardingModal />} 
         </S.Container>
       )}
       {isEdit && (
@@ -595,8 +610,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
           <Header
             minHeader
             minTitle={strings.CultureInfo.title}
-            // action={() => setCultureStep(1)}
+            action={() => setIsEdit(false)}
             isFinalStep={false}
+            isEdit={true}
           />
           <ScrollView style={{ paddingHorizontal: 16, flex: 1 }}>
             <View>
@@ -611,7 +627,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   size="normal"
                   weight="regular"
                 >
-                  {strings.CultureInfo.subTitle}
+                  Edição de cultura
                 </Typography>
                 <Input
                   label={inputStrings.culture.label}
@@ -629,7 +645,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                 <S.ContainerInput>
                   <MaskInput
                     placeholder={inputStrings.date.placeholder}
-                    value={data_plantio}
+                    value={data_plantio && data_plantio.split("-").reverse().join("/")}
                     onChangeText={(value) => setData_plantio(value)}
                     // onBlur={() => setStage()}
                     mask={[
@@ -650,7 +666,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   <Input
                     label={inputStrings.area.label}
                     placeholder={inputStrings.area.placeholder}
-                    value={area_plantio}
+                    value={String(cultureSelected.area_plantio)}
                     onChangeText={(value) => setArea_plantio(value)}
                   />
                 </View>

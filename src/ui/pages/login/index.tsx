@@ -42,15 +42,15 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
       })
       return false
     }
-  } 
+  }
 
-  
+
   const onLogin = useMutation<LoginModel, AxiosError>({
     mutationFn: () =>
-    auth.login({
-      email,
-      password,
-    }),
+      auth.login({
+        email,
+        password,
+      }),
     onSuccess: async (data) => {
       await cache.set({
         key: "@token",
@@ -59,14 +59,13 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
       navigation.navigate("HomeLogged");
     },
   });
-  
+
   const onSumbit = async () => {
-      if(!(await validate()))
-      {
-        return Alert.alert(status.message[0])
-      } else {
-        return onLogin.mutate()
-      } 
+    if (!(await validate())) {
+      return Alert.alert(status.message[0])
+    } else {
+      return onLogin.mutate()
+    }
   }
 
   useEffect(() => {
@@ -81,6 +80,7 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
         style={{
           flex: 1,
           paddingHorizontal: 16,
+
           backgroundColor: "#FFF",
         }}
       >

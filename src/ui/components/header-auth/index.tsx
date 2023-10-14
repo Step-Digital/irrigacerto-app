@@ -59,5 +59,6 @@ export const HeaderAuth: React.FC<{
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFF",
+    marginTop: 42
   },
 });
