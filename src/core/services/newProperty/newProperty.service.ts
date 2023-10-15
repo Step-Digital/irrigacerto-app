@@ -47,6 +47,18 @@ export class NewPropertyService implements NewPropertyDomain {
     }
   }
 
+  async getAllCalcCulture(): Promise<any> {
+    try {
+      console.log("ENTREI getAllCalcCulture PAPAI")
+      const { token } = await this.authRepository.getToken();
+      return await this.newPropertyRepository.getAllCalcCulture(token);
+    } catch (error) {
+      console.log("CHORAAA getAllCalcCulture")
+      console.log(error)
+    }
+  }
+
+
   async getAllPropertiesItems(): Promise<any> {
     try {
       console.log("ENTREI getAllPropertiesItems PAPAI")
@@ -83,6 +95,17 @@ export class NewPropertyService implements NewPropertyDomain {
       return await this.newPropertyRepository.deleteProperty(params, token);
     } catch (error) {
       console.log("CHORAAA deleteProperty")
+      console.log(error)
+    }
+  }
+
+  async editProperty(params: any, id: number): Promise<any> {
+    try {
+      console.log("ENTREI PAPAI EDIT PROPERTY")
+      const { token } = await this.authRepository.getToken();
+      return await this.newPropertyRepository.editProperty(params, id, token);
+    } catch (error) {
+      console.log("CHORA PAPAI EDIT PROPERTY")
       console.log(error)
     }
   }

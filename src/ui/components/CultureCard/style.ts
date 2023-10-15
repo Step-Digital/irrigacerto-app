@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components/native';
 
+interface EditButtonProps {
+  actve: boolean
+}
+
 export const Container = styled.View`
   ${({ theme }) => css`
     background-color: ${theme.colors["pure-white"]};
     padding: 16px;
-    margin: 16px;
+    margin: 16px 0;
     border-radius: 8px;
     elevation: 2;
   `}
@@ -44,6 +48,38 @@ export const PrecipitationTextContainer = styled.View`
   margin-bottom: 8px;
 `;
 
+export const PrecipitationInputContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+`;
+
+export const PrecipitationEditContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EditButton = styled.TouchableOpacity<EditButtonProps>`
+  ${({ theme, actve }) => css`
+    padding: 4px 8px; 
+    background-color: ${actve ? theme.colors["positive"] : theme.colors["gray-3"]} ;
+    border-radius: 4px;
+    margin-left: 8px;
+  `}
+`
+
+export const InputPrecipitation = styled.TextInput`
+${({ theme }) => css`
+  border: 1px solid ${theme.colors["gray-3"]};
+  padding: 4px 8px;
+  border-radius: 12px;
+`}
+`;
+
 export const StatusGroundContainer = styled.View`
   display: flex;
   flex-direction: column;
@@ -53,7 +89,7 @@ export const StatusGroundContainer = styled.View`
 export const FooterCard = styled.View`
   ${({ theme }) => css`
     background-color: ${theme.colors["gray-1"]};
-    padding: 14px;
+    padding: 8px;
     border-radius: 4px;
     display: flex;
     flex-direction: column;

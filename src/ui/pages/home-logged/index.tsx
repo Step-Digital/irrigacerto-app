@@ -78,6 +78,8 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   const [openButtonsMOdal, setOpenButtonsModal] = useState(false);
   const [isFirstAccess, setIsFirstAccess] = useState(AsyncStorage.getItem('firstAccess') || 'true')
   const [showProperties, setShowProperties] = useState(null);
+  const [propertySelected, setPropertySelected] = useState(null)
+  const [newPreciptation, setNewPreciptation] = useState('');
   const [cultureSelected, setCultureSelected] =
     useState<CultureSelectedProps>(null);
   const [isEdit, setIsEdit] = useState(false);
@@ -140,7 +142,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     id_solo: cultureSelected && cultureSelected.solo.id_solo,
   };
 
-  console.log('submit', JSON.stringify(sumbitValues, null, 2));
+  const submitValuesProperty = {
+    precipitacao: Number(newPreciptation)
+  }
 
   const getAllDefaultValues = () => {
     setNome_cultura(cultureSelected.nome_cultura);
@@ -168,6 +172,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   const { data, isLoading } = useQuery({
     queryKey: ["properties"],
     queryFn: () => propertyService.getProperties(),
+  });
+
+  const { data: dataCalc, isLoading: isLoadingCalc, refetch: refetchCalc } = useQuery({
+    queryKey: ["allCalcCulture"],
+    queryFn: () => propertyService.getAllCalcCulture(),
   });
 
   const {
@@ -249,6 +258,15 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     },
   });
 
+  const editProperty = useMutation<AxiosError>({
+    mutationFn: () =>
+    propertyService.editProperty(submitValuesProperty, propertySelected.id_propriedade),
+    onSuccess: () => {
+      refetchCalc();
+      setNewPreciptation('')
+    },
+  });
+
   // const totalStage3 =
   //   cultureSelected.duracao_estagio1 +
   //   cultureSelected.duracao_estagio2 +
@@ -306,8 +324,6 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     setIsFirstAccess(token)
   }
 
-  console.log('isFirstAccess', isFirstAccess)
-
   useEffect(() => {
     getFirst()
   }, [])
@@ -321,7 +337,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
             <ScrollView>
               <S.PropertyContainer>
                 {allData &&
-                  allData.data.map((it) => {
+                  allData.data.map((it, index) => {
                     return (
                       <>
                         <S.PropertyHeader>
@@ -388,7 +404,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                             ) : (
                               <S.OpenClosePorpertiesButton
                                 onPress={() =>
-                                  setShowProperties(it.id_propriedade)
+                                  {
+                                    setShowProperties(it.id_propriedade)
+                                    setPropertySelected(it)
+                                  }
+
                                 }
                                 style={{
                                   display: "flex",
@@ -459,10 +479,13 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                   plantingDate={item.data_plantio}
                                   stage={item.estagio_colheita}
                                   sector={item.setores}
-                                  precipitation={`${it.precipitacao}mm`}
-                                  groundStatus="-10mm"
-                                  irrigationValue="2 Horas / 5.000 L"
-                                  irrigationValueTotal="4 Horas / 10.000 L"
+                                  editPreciptation={() => editProperty.mutate()}
+                                  newPreciptation={newPreciptation}
+                                  setNewPreciptation={setNewPreciptation}
+                                  precipitation={`${dataCalc.data[index].precipitacao}mm`}
+                                  groundStatus={dataCalc.data[index].status_solo || '---'}
+                                  irrigationValue={dataCalc.data[index].volume_aplicado_setor || '---'}
+                                  irrigationValueTotal={dataCalc.data[index].volume_aplicado_area_total || '---'}
                                   getCulture={() => {
                                     setCultureSelected({
                                       ...item,

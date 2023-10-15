@@ -18,6 +18,9 @@ interface CultureCardProps {
   irrigationValue: string;
   irrigationValueTotal: string;
   getCulture: () => void;
+  editPreciptation: () => void;
+  newPreciptation: string;
+  setNewPreciptation: (val: string) => void;
 }
 
 const ControlledTooltip: React.FC<TooltipProps> = (props) => {
@@ -46,7 +49,10 @@ export const CultureCard: React.FC = ({
   groundStatus,
   irrigationValue,
   irrigationValueTotal,
-  getCulture
+  getCulture,
+  editPreciptation,
+  newPreciptation,
+  setNewPreciptation
 }: CultureCardProps) => {
   const [openEdit, setOpenEdit] = useState(false);
 
@@ -140,19 +146,19 @@ export const CultureCard: React.FC = ({
               }}
               contentFit="cover"
             />
-              <Typography
-                style={{
-                  textAlign: "left",
-                  fontFamily: "Poppins-regular",
-                  fontSize: 12,
-                  marginLeft: 8,
-                }}
-                color="gray-5"
-                size="normal"
-                weight="medium"
-              >
-                Editar
-              </Typography>
+            <Typography
+              style={{
+                textAlign: "left",
+                fontFamily: "Poppins-regular",
+                fontSize: 12,
+                marginLeft: 8,
+              }}
+              color="gray-5"
+              size="normal"
+              weight="medium"
+            >
+              Editar
+            </Typography>
           </S.EditContainer>
         )}
       </S.MainInfoContainer>
@@ -196,26 +202,14 @@ export const CultureCard: React.FC = ({
               />
             </ControlledTooltip>
           </S.PrecipitationTextContainer>
-          <S.PrecipitationTextContainer>
-            <S.MinusButton>
-              <Image
-                source={require("../../../../assets/minus.png")}
-                transition={1000}
-                style={{
-                  width: 26,
-                  height: 26,
-                  marginBottom: 4,
-                  marginLeft: 4,
-                }}
-                contentFit="cover"
-              />
-            </S.MinusButton>
+          <S.PrecipitationInputContainer>
             <Typography
               style={{
                 textAlign: "left",
                 fontFamily: "Poppins-regular",
                 fontSize: 14,
                 marginHorizontal: 8,
+                marginBottom: 4
               }}
               color="gray-7"
               size="normal"
@@ -223,20 +217,33 @@ export const CultureCard: React.FC = ({
             >
               {precipitation}
             </Typography>
-            <S.PlusButton>
-              <Image
-                source={require("../../../../assets/plus.png")}
-                transition={1000}
-                style={{
-                  width: 26,
-                  height: 26,
-                  marginBottom: 4,
-                  marginLeft: 4,
-                }}
-                contentFit="cover"
+            <S.PrecipitationEditContainer>
+              <S.InputPrecipitation
+                placeholder="valor (mm)"
+                value={newPreciptation}
+                onChangeText={(value) => setNewPreciptation(value)}
+                inputMode="numeric"
               />
-            </S.PlusButton>
-          </S.PrecipitationTextContainer>
+              <S.EditButton 
+                disabled={newPreciptation.length === 0} 
+                actve={newPreciptation.length !== 0}
+                onPress={() => editPreciptation()}
+              >
+                <Typography
+                  style={{
+                    textAlign: "left",
+                    fontFamily: "Poppins-bold",
+                    fontSize: 14,
+                  }}
+                  color="pure-white"
+                  size="normal"
+                  weight="medium"
+                >
+                  Editar
+                </Typography>
+              </S.EditButton>
+            </S.PrecipitationEditContainer>
+          </S.PrecipitationInputContainer>
         </S.PrecipitationContainer>
         <S.StatusGroundContainer>
           <Typography

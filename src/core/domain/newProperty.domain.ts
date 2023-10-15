@@ -6,4 +6,6 @@ export interface NewPropertyDomain {
   getAllPropertiesData: (token?: string) => Promise<any>;
   getAllPropertiesItems: (token?: string) => Promise<any>;
   deleteProperty: (id: number, token?: string) => Promise<any>;
+  getAllCalcCulture: (token?: string) => Promise<any>;
+  editProperty: (params: any, id: number, token?: string) => Promise<any>;
 }

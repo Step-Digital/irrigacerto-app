@@ -49,6 +49,19 @@ export class NewPropertyRepository implements NewPropertyDomain {
     };
   }
 
+  async getAllCalcCulture(token: string): Promise<any> {
+    const {
+      data,
+    } = await this.httpClient.get<any>("/propriedade/findAllCalcCulture", {
+      headers: {
+        ["Authorization"]: `Bearer ${token}`
+      }
+    });
+    return {
+      data,
+    };
+  }
+
 
   async getAllPropertiesItems(token: string): Promise<any> {
     const {
@@ -93,6 +106,19 @@ export class NewPropertyRepository implements NewPropertyDomain {
     const {
       data: { data },
     } = await this.httpClient.delete<any>(`/propriedade/${params}`, {
+      headers: {
+        ["Authorization"]: `Bearer ${token}`
+      }
+    });
+    return {
+      data,
+    };
+  }
+
+  async editProperty(params: any, id: number, token: string): Promise<any> {
+    const {
+      data: { data },
+    } = await this.httpClient.patch<any>(`/propriedade/${id}`, params, {
       headers: {
         ["Authorization"]: `Bearer ${token}`
       }
