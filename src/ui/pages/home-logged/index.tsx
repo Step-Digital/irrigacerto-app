@@ -260,7 +260,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
 
   const editProperty = useMutation<AxiosError>({
     mutationFn: () =>
-    propertyService.editProperty(submitValuesProperty, propertySelected.id_propriedade),
+    propertyService.editProperty(submitValuesProperty, propertySelected && propertySelected.id_propriedade),
     onSuccess: () => {
       refetchCalc();
       setNewPreciptation('')
