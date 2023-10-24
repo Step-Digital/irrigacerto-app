@@ -16,6 +16,7 @@ export default {
     assetBundlePatterns: ["**/*"],
     ios: {
       supportsTablet: true,
+      bundleIdentifier: "com.manejoIrrigacerto.app",
     },
     android: {
       adaptiveIcon: {
@@ -31,6 +32,7 @@ export default {
       eas: {
         projectId: "12aff356-ecf9-4200-b2b3-7e348aebaac1",
       },
+      oneSignalAppId: "5cab4469-3f98-44b6-a361-d6b388719524"
     },
     runtimeVersion: {
       policy: "sdkVersion",
@@ -38,5 +40,11 @@ export default {
     updates: {
       url: "https://u.expo.dev/36bbef1f-779d-411c-b658-86544c82db78",
     },
+    plugins: [[
+      "onesignal-expo-plugin",
+      {
+        mode: "development",
+      }
+    ]]
   },
 };

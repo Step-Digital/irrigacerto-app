@@ -184,7 +184,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     id_sistema_irrigacao: Number(id_sistema_irrigacao),
     id_motobomba: Number(id_motobomba),
     id_solo: Number(id_solo),
-    status_cultura: 1
+    status_cultura: 0
   };
 
   console.log('sumbitValues', JSON.stringify(sumbitValues, null, 2))

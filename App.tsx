@@ -12,6 +12,20 @@ import { GlobalRoutes } from "./src/ui/routes";
 import { BottomSheetProvider } from "./src/ui/components/bottomsheet/bottomsheet.contex";
 import { BottomSheet } from "./src/ui/components/bottomsheet";
 import { useFonts } from "expo-font";
+import { LogLevel, OneSignal } from 'react-native-onesignal';
+import Constants from "expo-constants";
+
+OneSignal.Debug.setLogLevel(LogLevel.Verbose);
+OneSignal.initialize(Constants.expoConfig.extra.oneSignalAppId);
+
+// Also need enable notifications to complete OneSignal setup
+OneSignal.Notifications.requestPermission(true);
+
+// Method for listening for notification clicks
+OneSignal.Notifications.addEventListener('click', (event) => {
+  console.log('OneSignal: notification clicked:', event);
+});
+
 
 const queryClient = new QueryClient();
 
