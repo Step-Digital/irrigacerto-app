@@ -7,7 +7,7 @@ import { Image } from "expo-image";
 import * as S from "./styles";
 import { NavigationProps } from "../../routes/types/StackNavigationProps";
 import { Typography } from "../../components/typography";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export const About: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
@@ -61,7 +61,7 @@ export const About: React.FC = () => {
             style={{
               fontFamily: "Poppins-regular",
               fontSize: 14,
-              textDecorationLine: 'underline'
+              textDecorationLine: "underline",
             }}
             color="gray-7"
             size="normal"
@@ -69,25 +69,26 @@ export const About: React.FC = () => {
           >
             {strings.about.footer}
           </Typography>
+          <View style={{ width: 319, height: 89 }}>
+            <Image
+              source={require("../../../../assets/sponsors1.png")}
+              placeholder={"Sponsors"}
+              contentFit="contain"
+              transition={1000}
+            />
+          </View>
           <Image
-            style={{ width: 319, height: 89 }}
-            source={require("../../../../assets/sponsors1.png")}
-            placeholder={"Sponsors"}
-            contentFit="fill"
-            transition={1000}
-          />
-          <Image
-            style={{ width: 232, height: 57, marginTop: 21 }}
+            style={{ width: "auto", height: "auto", marginTop: 21 }}
             source={require("../../../../assets/sponsors2.png")}
             placeholder={"Sponsors"}
-            contentFit="fill"
+            contentFit="contain"
             transition={1000}
           />
           <Image
-            style={{ width: 181, height: 73, marginTop: 15 }}
+            style={{ width: "auto", height: "auto", marginTop: 15 }}
             source={require("../../../../assets/sponsors3.png")}
             placeholder={"Sponsors"}
-            contentFit="fill"
+            contentFit="contain"
             transition={1000}
           />
         </S.ImagesContainer>

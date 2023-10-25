@@ -15,18 +15,18 @@ export class AuthRepository implements AuthDomain {
 
   async getToken(): Promise<GetTokenModel> {
     const token = await this.cacheRepository.get<{
-      accessToken: string,
+      accessToken: string;
     }>({ key: "@token" });
 
-    if(token !== undefined) {
+    if (token !== undefined) {
       return {
-        token: token.accessToken
-      }
+        token: token.accessToken,
+      };
     }
 
     return {
-      token: null
-    }
+      token: null,
+    };
   }
   async login(params: LoginDTO): Promise<LoginModel> {
     const {
@@ -70,12 +70,7 @@ export class AuthRepository implements AuthDomain {
     };
   }
 
-  async logout(params: SignupDTO): Promise<SignupModel> {
-    return {
-      data: {
-        accessToken: "",
-        refreshToken: "",
-      },
-    };
+  async logout(): Promise<any> {
+    return await this.cacheRepository.delete({ key: "@token" });
   }
 }

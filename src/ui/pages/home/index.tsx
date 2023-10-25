@@ -27,7 +27,9 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
       return cache.get({ key: "@token" });
     },
     onSuccess: (data) => {
-      console.log(data);
+      if (data !== null) {
+        return navigation.navigate("HomeLogged");
+      }
     },
   });
 

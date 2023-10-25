@@ -10,7 +10,7 @@ import { RequestPasswordResetModel } from "../../models/auth/request-password-re
 
 export class AuthService implements AuthDomain {
   constructor(private readonly authRepository: AuthRepository) {}
-  async getToken (): Promise<GetTokenModel> {
+  async getToken(): Promise<GetTokenModel> {
     return await this.authRepository.getToken();
   }
 
@@ -39,10 +39,10 @@ export class AuthService implements AuthDomain {
 
   async signup(params: SignupDTO): Promise<SignupModel> {
     try {
-      console.log('ENTREI SIGNUP PAPAI')
+      console.log("ENTREI SIGNUP PAPAI");
       return await this.authRepository.signup(params);
     } catch (error) {
-      console.log('CHORA SIGNUP PAPAI')
+      console.log("CHORA SIGNUP PAPAI");
       const {
         response: { status },
       } = error;
@@ -64,12 +64,7 @@ export class AuthService implements AuthDomain {
     };
   }
 
-  async logout(params: SignupDTO): Promise<SignupModel> {
-    return {
-      data: {
-        accessToken: "",
-        refreshToken: "",
-      },
-    };
+  async logout(): Promise<any> {
+    return this.authRepository.logout();
   }
 }

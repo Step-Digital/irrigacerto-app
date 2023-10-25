@@ -9,7 +9,7 @@ import { strings } from "../../../utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import MaskInput from "react-native-mask-input";
 import { MaterialIcons } from "@expo/vector-icons";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import * as S from "./style";
 import { OnboardingModal } from "../../components/OnboardingModal";
@@ -76,10 +76,12 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   cultureService,
 }) => {
   const [openButtonsMOdal, setOpenButtonsModal] = useState(false);
-  const [isFirstAccess, setIsFirstAccess] = useState(AsyncStorage.getItem('firstAccess') || 'true')
+  const [isFirstAccess, setIsFirstAccess] = useState(
+    AsyncStorage.getItem("firstAccess") || "true"
+  );
   const [showProperties, setShowProperties] = useState(null);
-  const [propertySelected, setPropertySelected] = useState(null)
-  const [newPreciptation, setNewPreciptation] = useState('');
+  const [propertySelected, setPropertySelected] = useState(null);
+  const [newPreciptation, setNewPreciptation] = useState("");
   const [cultureSelected, setCultureSelected] =
     useState<CultureSelectedProps>(null);
   const [isEdit, setIsEdit] = useState(false);
@@ -143,8 +145,8 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   };
 
   const submitValuesProperty = {
-    precipitacao: Number(newPreciptation)
-  }
+    precipitacao: Number(newPreciptation),
+  };
 
   const getAllDefaultValues = () => {
     setNome_cultura(cultureSelected.nome_cultura);
@@ -174,7 +176,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     queryFn: () => propertyService.getProperties(),
   });
 
-  const { data: dataCalc, isLoading: isLoadingCalc, refetch: refetchCalc } = useQuery({
+  const {
+    data: dataCalc,
+    isLoading: isLoadingCalc,
+    refetch: refetchCalc,
+  } = useQuery({
     queryKey: ["allCalcCulture"],
     queryFn: () => propertyService.getAllCalcCulture(),
   });
@@ -260,10 +266,13 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
 
   const editProperty = useMutation<AxiosError>({
     mutationFn: () =>
-    propertyService.editProperty(submitValuesProperty, propertySelected && propertySelected.id_propriedade),
+      propertyService.editProperty(
+        submitValuesProperty,
+        propertySelected && propertySelected.id_propriedade
+      ),
     onSuccess: () => {
       refetchCalc();
-      setNewPreciptation('')
+      setNewPreciptation("");
     },
   });
 
@@ -317,16 +326,15 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   //   }
   // }, [cultureSelected]);
 
-
   const getFirst = async () => {
-    const token = await AsyncStorage.getItem('firstAccess')
-    console.log('token', token)
-    setIsFirstAccess(token)
-  }
+    const token = await AsyncStorage.getItem("firstAccess");
+    console.log("token", token);
+    setIsFirstAccess(token);
+  };
 
   useEffect(() => {
-    getFirst()
-  }, [])
+    getFirst();
+  }, []);
 
   return (
     <>
@@ -340,7 +348,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   allData.data.map((it, index) => {
                     return (
                       <>
-                        <S.PropertyHeader>
+                        <S.PropertyHeader
+                          key={Math.floor(Math.random() * Date.now())}
+                        >
                           {it.cultura.length !== 0 &&
                             (showProperties === it.id_propriedade ? (
                               <S.OpenClosePorpertiesButton
@@ -403,13 +413,10 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                               </S.OpenClosePorpertiesButton>
                             ) : (
                               <S.OpenClosePorpertiesButton
-                                onPress={() =>
-                                  {
-                                    setShowProperties(it.id_propriedade)
-                                    setPropertySelected(it)
-                                  }
-
-                                }
+                                onPress={() => {
+                                  setShowProperties(it.id_propriedade);
+                                  setPropertySelected(it);
+                                }}
                                 style={{
                                   display: "flex",
                                   flexDirection: "row",
@@ -468,12 +475,13 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                               </S.OpenClosePorpertiesButton>
                             ))}
                         </S.PropertyHeader>
-                        <View>
+                        <View key={Math.floor(Math.random() * Date.now())}>
                           {showProperties === it.id_propriedade &&
                             it.cultura &&
                             it.cultura.map((item) => {
                               return (
                                 <CultureCard
+                                  key={Math.floor(Math.random() * Date.now())}
                                   image={item.dados_cultura.image_url}
                                   cultureTitle={item.nome_cultura}
                                   plantingDate={item.data_plantio}
@@ -483,9 +491,17 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                   newPreciptation={newPreciptation}
                                   setNewPreciptation={setNewPreciptation}
                                   precipitation={`${dataCalc.data[index].precipitacao}mm`}
-                                  groundStatus={dataCalc.data[index].status_solo || '---'}
-                                  irrigationValue={dataCalc.data[index].volume_aplicado_setor || '---'}
-                                  irrigationValueTotal={dataCalc.data[index].volume_aplicado_area_total || '---'}
+                                  groundStatus={
+                                    dataCalc.data[index].status_solo || "---"
+                                  }
+                                  irrigationValue={
+                                    dataCalc.data[index]
+                                      .volume_aplicado_setor || "---"
+                                  }
+                                  irrigationValueTotal={
+                                    dataCalc.data[index]
+                                      .volume_aplicado_area_total || "---"
+                                  }
                                   getCulture={() => {
                                     setCultureSelected({
                                       ...item,
@@ -625,7 +641,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
               </S.AddPropertyButton>
             </S.ButtonModalContainer>
           )}
-         {isFirstAccess !== 'primeiro' && <OnboardingModal />} 
+          {isFirstAccess !== "primeiro" && <OnboardingModal />}
         </S.Container>
       )}
       {isEdit && (
@@ -668,7 +684,10 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                 <S.ContainerInput>
                   <MaskInput
                     placeholder={inputStrings.date.placeholder}
-                    value={data_plantio && data_plantio.split("-").reverse().join("/")}
+                    value={
+                      data_plantio &&
+                      data_plantio.split("-").reverse().join("/")
+                    }
                     onChangeText={(value) => setData_plantio(value)}
                     // onBlur={() => setStage()}
                     mask={[

@@ -169,7 +169,6 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     id_dados_cultura: cultureSelected.id_dados_cultura,
     id_propriedade,
     id_sistema_irrigacao,
-    id_motobomba,
     id_solo,
   };
 
@@ -184,10 +183,10 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     id_sistema_irrigacao: Number(id_sistema_irrigacao),
     id_motobomba: Number(id_motobomba),
     id_solo: Number(id_solo),
-    status_cultura: 0
+    status_cultura: 0,
   };
 
-  console.log('sumbitValues', JSON.stringify(sumbitValues, null, 2))
+  console.log("sumbitValues", JSON.stringify(sumbitValues, null, 2));
 
   async function validate() {
     try {
@@ -222,14 +221,15 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     setCultureStep(2);
   }
 
-  const totalStage3 =  cultureSelected.duracao_estagio1 +
-  cultureSelected.duracao_estagio2 +
-  cultureSelected.duracao_estagio3
+  const totalStage3 =
+    cultureSelected.duracao_estagio1 +
+    cultureSelected.duracao_estagio2 +
+    cultureSelected.duracao_estagio3;
 
-  const totalStage2 =  cultureSelected.duracao_estagio1 +
-  cultureSelected.duracao_estagio2
+  const totalStage2 =
+    cultureSelected.duracao_estagio1 + cultureSelected.duracao_estagio2;
 
-  const totalStage1 =  cultureSelected.duracao_estagio1
+  const totalStage1 = cultureSelected.duracao_estagio1;
 
   function setStage() {
     var initialDate = data_plantio;
@@ -238,20 +238,16 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
       moment(initialDate, "DD/MM/YYYY")
     );
     var days = moment.duration(diff).asDays();
-  console.log("days", days)
+    console.log("days", days);
 
-
-    if (
-      days >
-      totalStage3
-    ) {
-      return setEstagio_colheita('4');
+    if (days > totalStage3) {
+      return setEstagio_colheita("4");
     } else if (days <= totalStage3 && days > totalStage2) {
-      return setEstagio_colheita('3');
-    } else if ( days <= totalStage2 && days > totalStage1) {
-      return setEstagio_colheita('2');
-    }  else {
-      return setEstagio_colheita('1');
+      return setEstagio_colheita("3");
+    } else if (days <= totalStage2 && days > totalStage1) {
+      return setEstagio_colheita("2");
+    } else {
+      return setEstagio_colheita("1");
     }
   }
 
@@ -298,7 +294,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                 if (item.segmento === "Hortaliça") {
                   return (
                     <S.CategoryContainer key={item.nome}>
-                      <S.CategoryButton  onPress={() => selectCulture(item)}>
+                      <S.CategoryButton onPress={() => selectCulture(item)}>
                         <CategoryCard text={item.nome} image={item.image_url} />
                       </S.CategoryButton>
                     </S.CategoryContainer>
@@ -313,8 +309,8 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                 if (item.segmento === "Frutífera") {
                   return (
                     <S.CategoryContainer key={item.nome}>
-                      <S.CategoryButton  onPress={() => selectCulture(item)}>
-                        <CategoryCard text={item.nome}  image={item.image_url}  />
+                      <S.CategoryButton onPress={() => selectCulture(item)}>
+                        <CategoryCard text={item.nome} image={item.image_url} />
                       </S.CategoryButton>
                     </S.CategoryContainer>
                   );
@@ -329,7 +325,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                   return (
                     <S.CategoryContainer key={item.nome}>
                       <S.CategoryButton onPress={() => selectCulture(item)}>
-                        <CategoryCard text={item.nome}  image={item.image_url}  />
+                        <CategoryCard text={item.nome} image={item.image_url} />
                       </S.CategoryButton>
                     </S.CategoryContainer>
                   );
@@ -344,7 +340,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                   return (
                     <S.CategoryContainer key={item.nome}>
                       <S.CategoryButton onPress={() => selectCulture(item)}>
-                        <CategoryCard text={item.nome}  image={item.image_url}  />
+                        <CategoryCard text={item.nome} image={item.image_url} />
                       </S.CategoryButton>
                     </S.CategoryContainer>
                   );
@@ -359,7 +355,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                   return (
                     <S.CategoryContainer key={item.nome}>
                       <S.CategoryButton onPress={() => selectCulture(item)}>
-                        <CategoryCard text={item.nome}  image={item.image_url}  />
+                        <CategoryCard text={item.nome} image={item.image_url} />
                       </S.CategoryButton>
                     </S.CategoryContainer>
                   );
@@ -374,7 +370,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                   return (
                     <S.CategoryContainer key={item.nome}>
                       <S.CategoryButton onPress={() => selectCulture(item)}>
-                        <CategoryCard text={item.nome}  image={item.image_url}  />
+                        <CategoryCard text={item.nome} image={item.image_url} />
                       </S.CategoryButton>
                     </S.CategoryContainer>
                   );

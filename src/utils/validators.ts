@@ -1,75 +1,79 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const RULES = {
   GENERAL: {
-    REQUIRED: 'Preencha todos os campos',
+    REQUIRED: "Preencha todos os campos",
   },
   EMAIL: {
-    VALID: 'Digite um email válido',
+    VALID: "Digite um email válido",
   },
   PASSWORD: {
-    VALID: 'A senha deve conter pelo menos 8 caracteres',
+    VALID: "A senha deve conter pelo menos 8 caracteres",
   },
   CEP: {
-    VALID: 'Digite um cep válido',
+    VALID: "Digite um cep válido",
   },
   AREA_PROPRIEDADE: {
-    VALID: 'Digite uma área válida',
+    VALID: "Digite uma área válida",
   },
   CAPACIDADE_CAMPO: {
-    VALID: 'Digite uma capacidade de campo válida',
+    VALID: "Digite uma capacidade de campo válida",
   },
   PONTO_MURCHA: {
-    VALID: 'Digite um ponto de murcha válido',
+    VALID: "Digite um ponto de murcha válido",
   },
   DENSIDADE: {
-    VALID: 'Digite uma densidade válida',
+    VALID: "Digite uma densidade válida",
   },
   POTENCIA: {
-    VALID: 'Digite uma potência válida',
+    VALID: "Digite uma potência válida",
   },
   VAZAO_MAXIMA: {
-    VALID: 'Digite uma vazão máxima válida',
+    VALID: "Digite uma vazão máxima válida",
   },
   CONSUMO: {
-    VALID: 'Digite um consumo válido',
+    VALID: "Digite um consumo válido",
   },
   VALOR_KW: {
-    VALID: 'Digite um valor do kw válido',
+    VALID: "Digite um valor do kw válido",
   },
   EIFICENCIA_IRRIGACAO: {
-    VALID: 'Digite uma eficiência de irrigação válida',
+    VALID: "Digite uma eficiência de irrigação válida",
   },
   AREA_TOTAL_PLANTIO: {
-    VALID: 'Digite uma área total de plantio válida',
+    VALID: "Digite uma área total de plantio válida",
   },
   QUANTIADADE_SETORES: {
-    VALID: 'Digite uma quantidade de setores válida',
+    VALID: "Digite uma quantidade de setores válida",
   },
   AREA_IRRIGADA: {
-    VALID: 'Digite uma área irrigada válido',
+    VALID: "Digite uma área irrigada válido",
   },
   ESPACAMENTO_LINHA: {
-    VALID: 'Digite um espaçamento entre linhas válido',
+    VALID: "Digite um espaçamento entre linhas válido",
   },
   COEFICIENTE_UNIFORMIDADE: {
-    VALID: 'Digite coeficiente de uniformidade válido',
+    VALID: "Digite coeficiente de uniformidade válido",
   },
   EIFICIENCIA_SISTEMA: {
-    VALID: 'Digite uma eficiência do sistema válida',
+    VALID: "Digite uma eficiência do sistema válida",
   },
 };
 
 export const loginValidators = Yup.object().shape({
   email: Yup.string().email(RULES.EMAIL.VALID).required(RULES.GENERAL.REQUIRED),
-  password: Yup.string().min(8, RULES.PASSWORD.VALID).required(RULES.GENERAL.REQUIRED),
+  password: Yup.string()
+    .min(8, RULES.PASSWORD.VALID)
+    .required(RULES.GENERAL.REQUIRED),
 });
 
 export const signupValidators = Yup.object().shape({
   nome: Yup.string().required(RULES.GENERAL.REQUIRED),
   email: Yup.string().email(RULES.EMAIL.VALID).required(RULES.GENERAL.REQUIRED),
   celular: Yup.string().required(RULES.GENERAL.REQUIRED),
-  password: Yup.string().min(8, RULES.PASSWORD.VALID).required(RULES.GENERAL.REQUIRED),
+  password: Yup.string()
+    .min(8, RULES.PASSWORD.VALID)
+    .required(RULES.GENERAL.REQUIRED),
   cep: Yup.string().required(RULES.GENERAL.REQUIRED),
   logradouro: Yup.string().required(RULES.GENERAL.REQUIRED),
   numero: Yup.string().required(RULES.GENERAL.REQUIRED),
@@ -126,6 +130,5 @@ export const cultureValidators = Yup.object().shape({
   id_dados_cultura: Yup.string().required(RULES.GENERAL.REQUIRED),
   id_propriedade: Yup.string().required(RULES.GENERAL.REQUIRED),
   id_sistema_irrigacao: Yup.string().required(RULES.GENERAL.REQUIRED),
-  id_motobomba: Yup.string().required(RULES.GENERAL.REQUIRED),
   id_solo: Yup.string().required(RULES.GENERAL.REQUIRED),
 });
