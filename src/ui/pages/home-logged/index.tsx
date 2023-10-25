@@ -138,10 +138,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     estagio_colheita,
     id_dados_cultura,
     id_propriedade: cultureSelected && cultureSelected.id_propriedade,
-    id_sistema_irrigacao:
-      cultureSelected && cultureSelected.sistema_irrigacao.id_sistema_irrigacao,
+    id_sistema_irrigacao: id_sistema_irrigacao,
     id_motobomba: cultureSelected && cultureSelected.motobomba.id_motobomba,
-    id_solo: cultureSelected && cultureSelected.solo.id_solo,
+    id_solo: id_solo,
   };
 
   const submitValuesProperty = {
@@ -215,7 +214,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   });
 
   const properties =
-    !isLoading &&
+    !isLoading && data &&
     data.data.map((item) => {
       return {
         name: item.nome,
@@ -224,7 +223,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     });
 
   const grounds =
-    !groundQuery.isLoading &&
+    !groundQuery.isLoading && groundQuery.data &&
     groundQuery.data.data.map((item) => {
       return {
         name: item.tipo_solo,
@@ -233,7 +232,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     });
 
   const bombs =
-    !bombQuery.isLoading &&
+    !bombQuery.isLoading && bombQuery.data &&
     bombQuery.data.data.map((item) => {
       return {
         name: item.modelo,
@@ -242,7 +241,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     });
 
   const systems =
-    !systemsQuery.isLoading &&
+    !systemsQuery.isLoading && systemsQuery.data &&
     systemsQuery.data.data.map((item) => {
       return {
         name: item.nome,
@@ -275,6 +274,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
       setNewPreciptation("");
     },
   });
+
 
   // const totalStage3 =
   //   cultureSelected.duracao_estagio1 +
@@ -730,7 +730,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                 <Select
                   label={inputStrings.property.label}
                   touchableText={inputStrings.property.placeholder}
-                  setValue={() => {}}
+                  setValue={() => { }}
                   data={properties}
                   setId={() => {
                     setId_propriedade();
@@ -742,19 +742,17 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                 <Select
                   label={inputStrings.groundType.label}
                   touchableText={inputStrings.groundType.placeholder}
-                  setValue={() => {}}
-                  setId={() => {
-                    setId_solo();
-                    setSelectedEditGround(null);
-                  }}
+                  setValue={() => { }}
+                  setId={setId_solo}
                   data={grounds}
                   stateValue={null}
                   selectedEdit={selectedEditGround}
+                  clean={null}
                 />
                 <Select
                   label={inputStrings.bomb.label}
                   touchableText={inputStrings.bomb.placeholder}
-                  setValue={() => {}}
+                  setValue={() => { }}
                   setId={() => {
                     setId_motobomba();
                     setSelectedEditBomb(null);
@@ -766,9 +764,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                 <Select
                   label={inputStrings.irrigationSystem.label}
                   touchableText={inputStrings.irrigationSystem.placeholder}
-                  setValue={() => {}}
+                  setValue={() => { }}
                   setId={() => {
-                    setId_sistema_irrigacao();
+                    setId_sistema_irrigacao;
                     setSelectedEditSystem(null);
                   }}
                   data={systems}
