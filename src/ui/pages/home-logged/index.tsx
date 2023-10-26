@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import { Typography } from "../../components/typography";
 import { Header } from "../../components/Header";
 import { Image } from "expo-image";
@@ -8,7 +8,6 @@ import { NavigationProps } from "../../routes/types/StackNavigationProps";
 import { strings } from "../../../utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import MaskInput from "react-native-mask-input";
-import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import * as S from "./style";
@@ -22,10 +21,11 @@ import { IrrigationSystemDomain } from "../../../core/domain/irrigationSystem.do
 import { CultureDomain } from "../../../core/domain/culture.domain";
 import { CultureCard } from "../../components/CultureCard";
 import { Input } from "../../components/input";
-import moment from "moment";
 import { Button } from "../../components/button";
 import { Select } from "../../components/SelectInput";
 import { AxiosError } from "axios";
+import { PropertyHeader } from "../../components/PropertyHeader";
+import { ButtonsModal } from "../../components/ButtonsModal";
 
 type HomeLoggedProps = {
   auth: AuthDomain;
@@ -116,8 +116,6 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   const [id_solo, setId_solo] = useState(
     cultureSelected && cultureSelected.solo
   );
-  const [status, setStatus] = useState({ type: "", message: "" });
-
   const [selectedEditProperty, setSelectedEditProperty] = useState(
     cultureSelected && cultureSelected.nome
   );
@@ -275,57 +273,6 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     },
   });
 
-
-  // const totalStage3 =
-  //   cultureSelected.duracao_estagio1 +
-  //   cultureSelected.duracao_estagio2 +
-  //   cultureSelected.duracao_estagio3;
-
-  // const totalStage2 =
-  //   cultureSelected.duracao_estagio1 + cultureSelected.duracao_estagio2;
-
-  // const totalStage1 = cultureSelected.duracao_estagio1;
-
-  // function setStage() {
-  //   var initialDate = data_plantio;
-  //   var dateNow = new Date();
-  //   var diff = moment(dateNow, "DD/MM/YYYY").diff(
-  //     moment(initialDate, "DD/MM/YYYY")
-  //   );
-  //   var days = moment.duration(diff).asDays();
-  //   console.log("days", days);
-
-  //   if (days > totalStage3) {
-  //     return setEstagio_colheita("4");
-  //   } else if (days <= totalStage3 && days > totalStage2) {
-  //     return setEstagio_colheita("3");
-  //   } else if (days <= totalStage2 && days > totalStage1) {
-  //     return setEstagio_colheita("2");
-  //   } else {
-  //     return setEstagio_colheita("1");
-  //   }
-  // }
-
-  // console.log('allData', JSON.stringify(allData, null, 2));
-
-  // useEffect(() => {
-  //   if (cultureSelected !== null) {
-  //     setId_solo(cultureSelected.solo.id_solo);
-  //     setId_motobomba(cultureSelected.motobomba.modelo);
-  //     setId_sistema_irrigacao(cultureSelected.sistema_irrigacao.nome);
-  //     serId_dados_cultura(cultureSelected.dados_cultura.id_dados_cultura);
-  //     setId_propriedade(cultureSelected.id_propriedade);
-  //   }
-  // }, [cultureSelected]);
-
-  // useEffect(() => {
-  //   if (cultureSelected !== null) {
-  //     setSelectedEditGround(cultureSelected.solo.tipo_solo);
-  //     setSelectedEditBomb(cultureSelected.motobomba.modelo);
-  //     setSelectedEditSystem(cultureSelected.sistema_irrigacao.nome);
-  //   }
-  // }, [cultureSelected]);
-
   const getFirst = async () => {
     const token = await AsyncStorage.getItem("firstAccess");
     console.log("token", token);
@@ -348,133 +295,13 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   allData.data.map((it, index) => {
                     return (
                       <>
-                        <S.PropertyHeader
+                        <PropertyHeader
+                          it={it}
+                          setPropertySelected={setPropertySelected}
+                          setShowProperties={setShowProperties}
+                          showProperties={showProperties}
                           key={Math.floor(Math.random() * Date.now())}
-                        >
-                          {it.cultura.length !== 0 &&
-                            (showProperties === it.id_propriedade ? (
-                              <S.OpenClosePorpertiesButton
-                                onPress={() => setShowProperties(null)}
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  justifyContent: "space-between",
-                                  width: "100%",
-                                }}
-                              >
-                                <View
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                  }}
-                                >
-                                  <Image
-                                    source={require("../../../../assets/farmGreen.png")}
-                                    transition={1000}
-                                    style={{
-                                      width: 21,
-                                      height: 21,
-                                      marginBottom: 4,
-                                      marginLeft: 4,
-                                    }}
-                                    contentFit="cover"
-                                  />
-                                  <Typography
-                                    style={{
-                                      textAlign: "left",
-                                      fontFamily: "Poppins-regular",
-                                      fontSize: 18,
-                                      marginLeft: 8,
-                                    }}
-                                    color="neutral-4"
-                                    size="normal"
-                                    weight="medium"
-                                  >
-                                    {it.nome} &nbsp;
-                                    <Typography
-                                      style={{
-                                        textAlign: "left",
-                                        fontFamily: "Poppins-regular",
-                                        fontSize: 18,
-                                      }}
-                                      color="gray-5"
-                                      size="normal"
-                                      weight="medium"
-                                    >
-                                      ({it.cultura.length})
-                                    </Typography>
-                                  </Typography>
-                                </View>
-                                <MaterialIcons
-                                  name="keyboard-arrow-up"
-                                  size={32}
-                                  color="#00344A"
-                                />
-                              </S.OpenClosePorpertiesButton>
-                            ) : (
-                              <S.OpenClosePorpertiesButton
-                                onPress={() => {
-                                  setShowProperties(it.id_propriedade);
-                                  setPropertySelected(it);
-                                }}
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  justifyContent: "space-between",
-                                  width: "100%",
-                                }}
-                              >
-                                <View
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                  }}
-                                >
-                                  <Image
-                                    source={require("../../../../assets/farmGreen.png")}
-                                    transition={1000}
-                                    style={{
-                                      width: 21,
-                                      height: 21,
-                                      marginBottom: 4,
-                                      marginLeft: 4,
-                                    }}
-                                    contentFit="cover"
-                                  />
-                                  <Typography
-                                    style={{
-                                      textAlign: "left",
-                                      fontFamily: "Poppins-regular",
-                                      fontSize: 18,
-                                      marginLeft: 8,
-                                    }}
-                                    color="neutral-4"
-                                    size="normal"
-                                    weight="medium"
-                                  >
-                                    {it.nome} &nbsp;
-                                    <Typography
-                                      style={{
-                                        textAlign: "left",
-                                        fontFamily: "Poppins-regular",
-                                        fontSize: 18,
-                                      }}
-                                      color="gray-5"
-                                      size="normal"
-                                      weight="medium"
-                                    >
-                                      ({it.cultura.length})
-                                    </Typography>
-                                  </Typography>
-                                </View>
-                                <MaterialIcons
-                                  name="keyboard-arrow-down"
-                                  size={32}
-                                  color="#00344A"
-                                />
-                              </S.OpenClosePorpertiesButton>
-                            ))}
-                        </S.PropertyHeader>
+                        />
                         <View key={Math.floor(Math.random() * Date.now())}>
                           {showProperties === it.id_propriedade &&
                             it.cultura &&
@@ -580,67 +407,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
             )}
           </S.Content>
 
-          <S.ButtonContainer>
-            <S.OpenModalButton
-              onPress={() => setOpenButtonsModal(!openButtonsMOdal)}
-            >
-              <S.OpenModalButtonText>
-                {openButtonsMOdal ? "-" : "+"}
-              </S.OpenModalButtonText>
-            </S.OpenModalButton>
-          </S.ButtonContainer>
-          {openButtonsMOdal && (
-            <S.ButtonModalContainer>
-              <S.AddCultureButton
-                isDisabled={disableButton() === true}
-                bg-color="positive"
-                onPress={() => {
-                  navigation.navigate("CultureInfo");
-                  setOpenButtonsModal(false);
-                }}
-                disabled={disableButton()}
-              >
-                <Image
-                  source={require("../../../../assets/Light.png")}
-                  style={{
-                    width: 24,
-                    height: 24,
-                  }}
-                />
-                <Typography
-                  style={{ fontFamily: "Poppins-regular", marginLeft: 8 }}
-                  color="pure-white"
-                  size="normal"
-                  weight="medium"
-                >
-                  {strings.homeLogged.addButton.addCulture}
-                </Typography>
-              </S.AddCultureButton>
-              <S.AddPropertyButton
-                bg-color="positive"
-                onPress={() => {
-                  navigation.navigate("NewProperty");
-                  setOpenButtonsModal(false);
-                }}
-              >
-                <Image
-                  source={require("../../../../assets/Regular.png")}
-                  style={{
-                    width: 24,
-                    height: 24,
-                  }}
-                />
-                <Typography
-                  style={{ fontFamily: "Poppins-regular", marginLeft: 8 }}
-                  color="pure-white"
-                  size="normal"
-                  weight="medium"
-                >
-                  {strings.homeLogged.addButton.addProperty}
-                </Typography>
-              </S.AddPropertyButton>
-            </S.ButtonModalContainer>
-          )}
+          <ButtonsModal 
+            disableButton={disableButton}
+            openButtonsMOdal={openButtonsMOdal}
+            setOpenButtonsModal={setOpenButtonsModal}
+          />
           {isFirstAccess !== "primeiro" && <OnboardingModal />}
         </S.Container>
       )}
@@ -738,6 +509,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   }}
                   stateValue={null}
                   selectedEdit={selectedEditProperty}
+                  clean={null}
                 />
                 <Select
                   label={inputStrings.groundType.label}
@@ -760,6 +532,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   data={bombs}
                   stateValue={null}
                   selectedEdit={selectedEditBomb}
+                  clean={null}
                 />
                 <Select
                   label={inputStrings.irrigationSystem.label}
@@ -772,6 +545,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   data={systems}
                   stateValue={null}
                   selectedEdit={selectedEditSystem}
+                  clean={null}
                 />
                 <Button
                   onPress={() => editCulture.mutate()}
