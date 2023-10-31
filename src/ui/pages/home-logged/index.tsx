@@ -26,6 +26,7 @@ import { Select } from "../../components/SelectInput";
 import { AxiosError } from "axios";
 import { PropertyHeader } from "../../components/PropertyHeader";
 import { ButtonsModal } from "../../components/ButtonsModal";
+import moment from "moment";
 
 type HomeLoggedProps = {
   auth: AuthDomain;
@@ -135,10 +136,10 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     setores,
     estagio_colheita,
     id_dados_cultura,
-    id_propriedade: cultureSelected && cultureSelected.id_propriedade,
-    id_sistema_irrigacao: id_sistema_irrigacao,
-    id_motobomba: cultureSelected && cultureSelected.motobomba.id_motobomba,
-    id_solo: id_solo,
+    id_propriedade,
+    id_sistema_irrigacao,
+    id_motobomba,
+    id_solo,
   };
 
   const submitValuesProperty = {
@@ -152,8 +153,8 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     setEstagio_colheita(cultureSelected.estagio_colheita);
     setSetores(cultureSelected.setores);
     setId_solo(cultureSelected.solo.id_solo);
-    setId_motobomba(cultureSelected.motobomba.modelo);
-    setId_sistema_irrigacao(cultureSelected.sistema_irrigacao.nome);
+    setId_motobomba(cultureSelected.motobomba.id_motobomba);
+    setId_sistema_irrigacao(cultureSelected.sistema_irrigacao.id_sistema_irrigacao);
     serId_dados_cultura(cultureSelected.dados_cultura.id_dados_cultura);
     setId_propriedade(cultureSelected.id_propriedade);
     setSelectedEditGround(cultureSelected.solo.tipo_solo);
@@ -258,8 +259,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     onSuccess: () => {
       refetch();
       setIsEdit(false);
+      setCultureSelected(null)
     },
   });
+
+  console.log('datadataCalc', JSON.stringify(dataCalc, null, 2))
 
   const editProperty = useMutation<AxiosError>({
     mutationFn: () =>
@@ -282,6 +286,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   useEffect(() => {
     getFirst();
   }, []);
+
+  const getValue = (irrigationValue, time) => {
+    const exactTime = Number(time.split(':')[0])
+    return `${moment().hour(exactTime).format('H')} Horas / ${irrigationValue} L`
+  }
 
   return (
     <>
@@ -322,12 +331,14 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                     dataCalc.data[index].status_solo || "---"
                                   }
                                   irrigationValue={
-                                    dataCalc.data[index]
-                                      .volume_aplicado_setor || "---"
+                                    getValue(dataCalc.data[index]
+                                      .volume_aplicado_setor,  dataCalc.data[index]
+                                      .tempo_irrigacao_sugerido_area_setor || "---" )
                                   }
                                   irrigationValueTotal={
-                                    dataCalc.data[index]
-                                      .volume_aplicado_area_total || "---"
+                                    getValue(dataCalc.data[index]
+                                      .volume_aplicado_area_total,  dataCalc.data[index]
+                                      .tempo_irrigacao_sugerido_area_total || "---" )
                                   }
                                   getCulture={() => {
                                     setCultureSelected({
@@ -503,8 +514,8 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   touchableText={inputStrings.property.placeholder}
                   setValue={() => { }}
                   data={properties}
-                  setId={() => {
-                    setId_propriedade();
+                  setId={(value) => {
+                    setId_propriedade(value);
                     setSelectedEditProperty(null);
                   }}
                   stateValue={null}
@@ -515,7 +526,10 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   label={inputStrings.groundType.label}
                   touchableText={inputStrings.groundType.placeholder}
                   setValue={() => { }}
-                  setId={setId_solo}
+                  setId={(value) => {
+                    setId_solo(value);
+                    setSelectedEditGround(null);
+                  }}
                   data={grounds}
                   stateValue={null}
                   selectedEdit={selectedEditGround}
@@ -525,8 +539,8 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   label={inputStrings.bomb.label}
                   touchableText={inputStrings.bomb.placeholder}
                   setValue={() => { }}
-                  setId={() => {
-                    setId_motobomba();
+                  setId={(value) => {
+                    setId_motobomba(value);
                     setSelectedEditBomb(null);
                   }}
                   data={bombs}
@@ -538,8 +552,8 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                   label={inputStrings.irrigationSystem.label}
                   touchableText={inputStrings.irrigationSystem.placeholder}
                   setValue={() => { }}
-                  setId={() => {
-                    setId_sistema_irrigacao;
+                  setId={(value) => {
+                    setId_sistema_irrigacao(value);
                     setSelectedEditSystem(null);
                   }}
                   data={systems}

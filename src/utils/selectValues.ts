@@ -20,7 +20,7 @@ export const groundTypes = [
   },
   {
     id: 3,
-    name: 'Arigiloso'
+    name: 'Argiloso'
   },
   {
     id: 4,

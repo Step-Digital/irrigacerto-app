@@ -39,6 +39,7 @@ const ControlledTooltip: React.FC<TooltipProps> = (props) => {
   );
 };
 
+
 export const CultureCard: React.FC = ({
   image,
   cultureTitle,
@@ -258,7 +259,9 @@ export const CultureCard: React.FC = ({
           >
             Status do Solo:
           </Typography>
-          <Typography
+          
+          {groundStatus === '---'  && (
+            <Typography
             style={{
               textAlign: "left",
               fontFamily: "Poppins-bold",
@@ -271,6 +274,37 @@ export const CultureCard: React.FC = ({
           >
             {groundStatus}
           </Typography>
+          )}
+          {Number(groundStatus) > 0 && (
+            <Typography
+            style={{
+              textAlign: "left",
+              fontFamily: "Poppins-bold",
+              fontSize: 16,
+              marginTop: 10,
+            }}
+            color="positive"
+            size="normal"
+            weight="medium"
+          >
+            +{groundStatus}mm
+          </Typography>
+          )} 
+          {groundStatus && Number(groundStatus) < 0 &&(
+            <Typography
+            style={{
+              textAlign: "left",
+              fontFamily: "Poppins-bold",
+              fontSize: 16,
+              marginTop: 10,
+            }}
+            color="negative"
+            size="normal"
+            weight="medium"
+          >
+            -{groundStatus}mm
+          </Typography>
+          )}
         </S.StatusGroundContainer>
       </S.StatusContainer>
       <S.FooterContainer>

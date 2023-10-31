@@ -21,8 +21,10 @@ const Touchable = (text = 'Selecione...', onPress, selected, objValue, label, wi
       </S.Container>
     )
   }
+  console.log('selectedEdit', selectedEdit)
   return { TouchableComponent }
 };
+
 
 const Option = (item, value, selected, objKey, onPress) => {
   const OptionComponent = () => {
@@ -69,14 +71,10 @@ export const Select = ({
     return <OptionComponent />
   }
 
-  console.log('selected', selected);
-
   function toggleSelect(item) {
     if(item?.[objKey] === selected?.[objKey]) {
       setSelected(null)
     } else {
-      console.log('item', item)
-      console.log('teste', item?.[objKey])
       setSelected(item)
       setValue(item?.[objValue])
       setId(item?.[objKey])
