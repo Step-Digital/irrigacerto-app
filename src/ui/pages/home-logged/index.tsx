@@ -263,8 +263,6 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     },
   });
 
-  console.log('datadataCalc', JSON.stringify(dataCalc, null, 2))
-
   const editProperty = useMutation<AxiosError>({
     mutationFn: () =>
       propertyService.editProperty(
@@ -288,8 +286,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   }, []);
 
   const getValue = (irrigationValue, time) => {
-    const exactTime = Number(time.split(':')[0])
-    return `${moment().hour(exactTime).format('H')} Horas / ${irrigationValue} L`
+    const hours = Number(time.split(':')[0])
+    const minutes = Number(time.split(':')[1])
+    return `${moment().hour(hours).format('HH')}:${moment().hour(minutes).format('HH')} Horas / ${irrigationValue ? irrigationValue : 0} L`
   }
 
   return (
