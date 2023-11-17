@@ -3,10 +3,6 @@ export type SignupDTO = {
   email: string;
   celular: string;
   cep: string;
-  logradouro: string;
-  numero: string;
-  bairro: string;
-  complemento?: string;
   cidade: string;
   estado: string;
   password: string;

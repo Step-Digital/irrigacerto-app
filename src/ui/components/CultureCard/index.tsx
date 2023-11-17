@@ -6,6 +6,9 @@ import { strings } from "../../../utils";
 
 import * as S from "./style";
 import { Typography } from "../typography";
+import { AxiosError } from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { NewPropertyDomain } from "../../../core/domain/newProperty.domain";
 
 interface CultureCardProps {
   image: string;
@@ -21,6 +24,9 @@ interface CultureCardProps {
   editPreciptation: () => void;
   newPreciptation: string;
   setNewPreciptation: (val: string) => void;
+  propertyService: NewPropertyDomain;
+  propertySelected: any
+  refetchCalc: any
 }
 
 const ControlledTooltip: React.FC<TooltipProps> = (props) => {
@@ -52,10 +58,31 @@ export const CultureCard: React.FC = ({
   irrigationValueTotal,
   getCulture,
   editPreciptation,
-  newPreciptation,
-  setNewPreciptation
+  propertyService,
+  propertySelected,
+  refetchCalc
+  // newPreciptation,
+  // setNewPreciptation
 }: CultureCardProps) => {
   const [openEdit, setOpenEdit] = useState(false);
+  const [newPreciptation, setNewPreciptation] = useState('');
+
+  const submitValuesProperty = {
+    precipitacao: Number(newPreciptation),
+  };
+
+  const editProperty = useMutation<AxiosError>({
+    mutationFn: () =>
+      propertyService.editProperty(
+        submitValuesProperty,
+        propertySelected && propertySelected.id_propriedade
+      ),
+    onSuccess: () => {
+      refetchCalc();
+      setNewPreciptation("");
+    },
+  });
+
 
   return (
     <S.Container>
@@ -228,7 +255,7 @@ export const CultureCard: React.FC = ({
               <S.EditButton 
                 disabled={newPreciptation.length === 0} 
                 actve={newPreciptation.length !== 0}
-                onPress={() => editPreciptation()}
+                onPress={() => editProperty.mutate()}
               >
                 <Typography
                   style={{
@@ -240,7 +267,7 @@ export const CultureCard: React.FC = ({
                   size="normal"
                   weight="medium"
                 >
-                  Editar
+                  Salvar
                 </Typography>
               </S.EditButton>
             </S.PrecipitationEditContainer>
@@ -260,7 +287,7 @@ export const CultureCard: React.FC = ({
             Status do Solo:
           </Typography>
           
-          {groundStatus === '---'  && (
+          {groundStatus === '0'  && (
             <Typography
             style={{
               textAlign: "left",
@@ -272,7 +299,7 @@ export const CultureCard: React.FC = ({
             size="normal"
             weight="medium"
           >
-            {groundStatus}
+            {groundStatus}mm
           </Typography>
           )}
           {Number(groundStatus) > 0 && (
@@ -302,7 +329,7 @@ export const CultureCard: React.FC = ({
             size="normal"
             weight="medium"
           >
-            -{groundStatus}mm
+            {groundStatus}mm
           </Typography>
           )}
         </S.StatusGroundContainer>
@@ -325,7 +352,7 @@ export const CultureCard: React.FC = ({
             style={{
               textAlign: "left",
               fontFamily: "Poppins-bold",
-              fontSize: 16,
+              fontSize: 12,
               marginTop: 8,
             }}
             color="neutral-1"
@@ -352,7 +379,7 @@ export const CultureCard: React.FC = ({
             style={{
               textAlign: "left",
               fontFamily: "Poppins-bold",
-              fontSize: 16,
+              fontSize: 12,
               marginTop: 8,
             }}
             color="neutral-1"

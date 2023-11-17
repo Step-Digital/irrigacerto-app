@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Toast from "react-native-toast-message";
 import MaskInput from "react-native-mask-input";
 import { AuthDomain } from "../../../core/domain/auth.domain";
 import {
@@ -7,7 +6,6 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  ToastAndroid,
 } from "react-native";
 import { Button } from "../../components/button";
 import { useNavigation } from "@react-navigation/native";
@@ -18,7 +16,6 @@ import { Input } from "../../components/input";
 import { useMutation } from "@tanstack/react-query";
 import { SignupModel } from "../../../core/models/auth";
 import { AxiosError } from "axios";
-import { FlashMessage } from "../../components/flash-message";
 import { signupValidators } from "../../../utils/validators";
 import { strings } from "../../../utils";
 import { ShowToast } from "../../components/toast";
@@ -40,12 +37,8 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [cep, setCep] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const [numero, setNumero] = useState("");
   const [estado, setEstado] = useState("");
   const [cidade, setCidade] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [bairro, setBairro] = useState("");
   const [status, setStatus] = useState({ type: "", message: "" });
   const [showLoad, setShowLoad] = useState(false);
 
@@ -56,9 +49,6 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
     celular,
     passwordConfirm,
     cep,
-    logradouro,
-    numero,
-    bairro,
     cidade,
     estado,
   };
@@ -68,17 +58,11 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
     email,
     celular,
     cep,
-    logradouro,
-    numero,
-    bairro,
-    complemento,
     cidade,
     password,
     estado,
     roles: ["user"],
   };
-
-  console.log("submitvalues", submitValues);
 
   async function validate() {
     try {
@@ -116,12 +100,10 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
       return;
     }
     try {
-      const { city, neighborhood, street, state } = await ceppromise(
+      const { city, state } = await ceppromise(
         cepString.replace(/[^0-9]+/g, "")
       );
       setCidade(city);
-      setBairro(neighborhood);
-      setLogradouro(street);
       setEstado(state);
       setShowLoad(false);
     } catch (e) {
@@ -232,31 +214,6 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
               mask={[/\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/]}
             />
           </S.ContainerInput>
-          <Input
-            label={inputStrings.street.label}
-            placeholder={inputStrings.street.placeholder}
-            value={logradouro}
-            onChangeText={(value) => setLogradouro(value)}
-          />
-          <Input
-            label={inputStrings.number.label}
-            placeholder={inputStrings.number.placeholder}
-            value={numero}
-            onChangeText={(value) => setNumero(value)}
-            inputMode="numeric"
-          />
-          <Input
-            label={inputStrings.neighbor.label}
-            placeholder={inputStrings.neighbor.placeholder}
-            value={bairro}
-            onChangeText={(value) => setBairro(value)}
-          />
-          <Input
-            label={inputStrings.complement.label}
-            placeholder={inputStrings.complement.placeholder}
-            value={complemento}
-            onChangeText={(value) => setComplemento(value)}
-          />
           <Input
             label={inputStrings.state.label}
             placeholder={inputStrings.state.placeholder}

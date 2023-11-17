@@ -136,34 +136,6 @@ export const Profile: React.FC<ProfileProps> = ({ auth, propertyService }) => {
               />
             </S.ContainerInput>
             <Input
-              label={inputStrings.street.label}
-              placeholder={inputStrings.street.placeholder}
-              value={(data && data.data[0].user.logradouro) || "---"}
-              editable={false}
-              style={{ color: "black" }}
-            />
-            <Input
-              label={inputStrings.number.label}
-              placeholder={inputStrings.number.placeholder}
-              value={(data && data.data[0].user.numero) || "---"}
-              editable={false}
-              style={{ color: "black" }}
-            />
-            <Input
-              label={inputStrings.neighbor.label}
-              placeholder={inputStrings.neighbor.placeholder}
-              value={(data && data.data[0].user.bairro) || "---"}
-              style={{ color: "black" }}
-              editable={false}
-            />
-            <Input
-              label={inputStrings.complement.label}
-              placeholder={inputStrings.complement.placeholder}
-              value={(data && data.data[0].user.complemento) || "---"}
-              style={{ color: "black" }}
-              editable={false}
-            />
-            <Input
               label={inputStrings.state.label}
               placeholder={inputStrings.state.placeholder}
               value={(data && data.data[0].user.estado) || "---"}

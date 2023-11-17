@@ -362,7 +362,7 @@ export default {
       },
       stage: {
         label: 'Estágio Atual da Cultura',
-        placeholder: 'Automático'
+        placeholder: '...'
       },
       property: {
         label: 'Propriedade',

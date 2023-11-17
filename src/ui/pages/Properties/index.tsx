@@ -703,7 +703,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                                       <S.InfoText>
                                         Tipo:{" "}
                                         <S.InfoTextBold>
-                                          {item.tipo_irrigacao}
+                                        {item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}
                                         </S.InfoTextBold>
                                       </S.InfoText>
                                       <S.InfoText>

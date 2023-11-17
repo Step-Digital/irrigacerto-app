@@ -3,7 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 import { Alert, ScrollView, TouchableOpacity, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { Formik } from "formik";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
@@ -12,7 +11,7 @@ import { NewPropertyDomain } from "../../../core/domain/newProperty.domain";
 import { NavigationProps } from "../../routes/types/StackNavigationProps";
 import { strings } from "../../../utils";
 import { irrigationTypeSelect } from "../../../utils/selectValues";
-import { systemValidators, RULES } from "../../../utils/validators";
+import { systemValidators } from "../../../utils/validators";
 
 import { Typography } from "../../components/typography";
 import { Input } from "../../components/input";
@@ -92,6 +91,8 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
     queryKey: ["irrigationSystems"],
     queryFn: () => irrigationSystemService.getSystems(),
   });
+
+  console.log('dataSystems', JSON.stringify(dataSystems, null, 2))
 
   const validateValues = {
     nome,
@@ -239,26 +240,31 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
               touchableText={inputStrings.irrigationType.placeholder}
               data={irrigationTypeSelect}
               setValue={setTipo_irrigacao}
-              setId={() => {}}
+              setId={() => { }}
               clean={cleanGround}
               stateValue={undefined}
             />
 
             {tipo_irrigacao === "Aspersão Convencional" && (
               <>
-                <Input
-                  label={inputStrings.sectorName.label}
-                  placeholder={inputStrings.sectorName.placeholder}
-                  value={nome_setor}
-                  onChangeText={(value) => setNome_setor(value)}
-                />
+                <View>
+                  <Input
+                    label={inputStrings.sectorName.label}
+                    placeholder={inputStrings.sectorName.placeholder}
+                    value={nome_setor}
+                    onChangeText={(value) => setNome_setor(value)}
+                  />
+                </View>
+                <View>
+
                 <Input
                   label={inputStrings.irrigatedArea.label}
                   placeholder={inputStrings.irrigatedArea.placeholder}
                   value={area_irrigada}
                   onChangeText={(value) => setArea_irrigada(value)}
                   inputMode="numeric"
-                />
+                  />
+                  </View>
                 <Input
                   label={inputStrings.sprinklerFlow.label}
                   placeholder={inputStrings.sprinklerFlow.placeholder}
@@ -299,18 +305,24 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
 
             {tipo_irrigacao === "Microaspersão ou Gotejamento" && (
               <>
-                <Input
-                  label={inputStrings.sectorName.label}
-                  placeholder={inputStrings.sectorName.placeholder}
-                  value={nome_setor}
-                  onChangeText={(value) => setNome_setor(value)}
-                />
-                <Input
-                  label={inputStrings.irrigatedArea.label}
-                  placeholder={inputStrings.irrigatedArea.placeholder}
-                  value={area_irrigada}
-                  onChangeText={(value) => setArea_irrigada(value)}
-                />
+                <View>
+
+                  <Input
+                    label={inputStrings.sectorName.label}
+                    placeholder={inputStrings.sectorName.placeholder}
+                    value={nome_setor}
+                    onChangeText={(value) => setNome_setor(value)}
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.irrigatedArea.label}
+                    placeholder={inputStrings.irrigatedArea.placeholder}
+                    value={area_irrigada}
+                    onChangeText={(value) => setArea_irrigada(value)}
+                  />
+                </View>
                 <Input
                   label={inputStrings.issuerFlow.label}
                   placeholder={inputStrings.issuerFlow.placeholder}
@@ -373,7 +385,7 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
 
             {dataSystems &&
               dataSystems.data.map((item) => {
-                if (item.tipo_irrigacao === "Aspersão Convencional") {
+                if (item.tipo_irrigacao === 2) {
                   return (
                     <S.CardContainer key={item.id_sistema_irrigacao}>
                       <S.CardContent>
@@ -398,7 +410,7 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                         </S.InfoText>
                         <S.InfoText>
                           Tipo de Irrigação:{" "}
-                          <S.InfoTextBold>{item.tipo_irrigacao}</S.InfoTextBold>
+                          <S.InfoTextBold>{item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}</S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Nome do Setor:{" "}
@@ -451,7 +463,7 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                     </S.CardContainer>
                   );
                 }
-                if (item.tipo_irrigacao === "Microaspersão ou Gotejamento") {
+                if (item.tipo_irrigacao === 1) {
                   return (
                     <S.CardContainer key={item.id_sistema_irrigacao}>
                       <S.CardContent>
@@ -476,7 +488,7 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                         </S.InfoText>
                         <S.InfoText>
                           Tipo de Irrigação:{" "}
-                          <S.InfoTextBold>{item.tipo_irrigacao}</S.InfoTextBold>
+                          <S.InfoTextBold>{item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}</S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Nome do Setor:{" "}

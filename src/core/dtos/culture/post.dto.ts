@@ -2,7 +2,6 @@ export type NewCultureDTO = {
   nome_cultura: string;
   data_plantio: string;
   area_plantio: number;
-  setores: string;
   estagio_colheita: number;
   id_dados_cultura: number;
   id_propriedade: number;

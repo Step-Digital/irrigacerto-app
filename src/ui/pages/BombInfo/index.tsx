@@ -35,20 +35,14 @@ export const BombInfo:React.FC<BombInfoProps> = ({ bombService, propertyService 
   const navigation = useNavigation<NavigationProps>();
   const [bombs, setBombs] = useState([]);
   const [fabricante, setFabricante] = useState('');
-  const [modelo, setModelo] = useState('');
   const [potencia, setPotencia] = useState('');
   const [vazao_maxima, setVazao_maxima] = useState('');
-  const [consumo, setConsumo] = useState('');
-  const [valor_kw, setValor_kw] = useState('');
   const [status, setStatus] = useState({ type: '', message: '' })
 
   const cleanBombsInputs = () => {
-    setModelo("");
     setPotencia("");
     setVazao_maxima("");
     setFabricante("");
-    setConsumo("");
-    setValor_kw("");
   };
 
   const { data, isLoading } = useQuery({
@@ -63,20 +57,14 @@ export const BombInfo:React.FC<BombInfoProps> = ({ bombService, propertyService 
 
   const validateValues = {
     fabricante,
-    modelo,
     potencia,
     vazao_maxima,
-    consumo,
-    valor_kw,
   }
 
   const sumbitValues = {
     fabricante,
-    modelo,
     potencia,
     vazao_maxima: Number(vazao_maxima),
-    consumo: Number(consumo),
-    valor_kw: Number(valor_kw),
     ativada: true,
     id_propriedade: !isLoading && data.data[data.data.length - 1].id_propriedade,
   }
@@ -155,12 +143,6 @@ export const BombInfo:React.FC<BombInfoProps> = ({ bombService, propertyService 
             onChangeText={(value) => setFabricante(value)}
           />
           <Input 
-            label={inputStrings.model.label} 
-            placeholder={inputStrings.model.placeholder}   
-            value={modelo}
-            onChangeText={(value) => setModelo(value)}
-          />
-          <Input 
             label={inputStrings.power.label} 
             placeholder={inputStrings.power.placeholder}   
             value={potencia}
@@ -176,22 +158,6 @@ export const BombInfo:React.FC<BombInfoProps> = ({ bombService, propertyService 
               inputMode="numeric"
             />
           </View>
-          <View>
-            <Input 
-              label={inputStrings.consumption.label} 
-              placeholder={inputStrings.consumption.placeholder}   
-              value={consumo}
-              onChangeText={(value) => setConsumo(value)}
-              inputMode="numeric"
-            />
-            </View>
-          <Input 
-            label={inputStrings.value.label} 
-            placeholder={inputStrings.value.placeholder}   
-            value={valor_kw}
-            onChangeText={(value) => setValor_kw(value)}
-            inputMode="numeric"
-          />
 
           <S.AddButton onPress={() => onSumbit()}>
               <Ionicons name="add" size={24} color="#fff" />

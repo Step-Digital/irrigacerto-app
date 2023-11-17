@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Input } from "../../components/input";
 import { Button } from "../../components/button";
 import { Typography } from "../../components/typography";
-import { Alert, View } from "react-native";
+import { Alert, TextInput, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationProps } from "../../routes/types/StackNavigationProps";
 import { AuthDomain } from "../../../core/domain/auth.domain";
@@ -98,10 +98,10 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
         <Input
           label="Senha"
           placeholder="******"
-          keyboardType="visible-password"
           autoComplete="password"
           value={password}
           onChangeText={(e) => setPassword(e)}
+          secureTextEntry
         />
         <View
           style={{

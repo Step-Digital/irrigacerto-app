@@ -68,9 +68,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
   const [nome_cultura, setNome_cultura] = useState("");
   const [data_plantio, setData_plantio] = useState("");
   const [area_plantio, setArea_plantio] = useState("");
-  const [setores, setSetores] = useState("");
   const [estagio_colheita, setEstagio_colheita] = useState("");
-  const [id_dados_cultura, serId_dados_cultura] = useState("");
   const [id_propriedade, setId_propriedade] = useState("");
   const [id_sistema_irrigacao, setId_sistema_irrigacao] = useState("");
   const [id_motobomba, setId_motobomba] = useState("");
@@ -164,7 +162,6 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     nome_cultura,
     data_plantio,
     area_plantio,
-    setores,
     estagio_colheita,
     id_dados_cultura: cultureSelected.id_dados_cultura,
     id_propriedade,
@@ -176,7 +173,6 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     nome_cultura,
     data_plantio: data_plantio.split("/").reverse().join("-"),
     area_plantio: Number(area_plantio),
-    setores,
     estagio_colheita: Number(estagio_colheita),
     id_dados_cultura: Number(cultureSelected.id_dados_cultura),
     id_propriedade: Number(id_propriedade),
@@ -185,8 +181,6 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     id_solo: Number(id_solo),
     status_cultura: 0,
   };
-
-  console.log("sumbitValues", JSON.stringify(sumbitValues, null, 2));
 
   async function validate() {
     try {
@@ -448,14 +442,6 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                   placeholder={inputStrings.area.placeholder}
                   value={area_plantio}
                   onChangeText={(value) => setArea_plantio(value)}
-                />
-              </View>
-              <View>
-                <Input
-                  label={inputStrings.sector.label}
-                  placeholder={inputStrings.sector.placeholder}
-                  value={setores}
-                  onChangeText={(value) => setSetores(value)}
                 />
               </View>
               <Input

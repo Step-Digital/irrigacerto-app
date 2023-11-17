@@ -16,6 +16,7 @@ export const Input: React.FC<InputProps> = (props) => {
       </S.SyledLabel>
       <S.StyledInput
         {...props}
+        autoComplete="off"
         keyboardAppearance="light"
         placeholderTextColor="#ACB4BA"
       />

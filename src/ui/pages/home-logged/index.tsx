@@ -82,7 +82,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   );
   const [showProperties, setShowProperties] = useState(null);
   const [propertySelected, setPropertySelected] = useState(null);
-  const [newPreciptation, setNewPreciptation] = useState("");
+  const [newPreciptation, setNewPreciptation] = useState('');
   const [cultureSelected, setCultureSelected] =
     useState<CultureSelectedProps>(null);
   const [isEdit, setIsEdit] = useState(false);
@@ -321,19 +321,22 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                   cultureTitle={item.nome_cultura}
                                   plantingDate={item.data_plantio}
                                   stage={item.estagio_colheita}
-                                  sector={item.setores}
+                                  propertyService={propertyService}
+                                  propertySelected={propertySelected}
+                                  refetchCalc={refetchCalc}
                                   editPreciptation={() => editProperty.mutate()}
-                                  newPreciptation={newPreciptation}
-                                  setNewPreciptation={setNewPreciptation}
+                                  // newPreciptation={newPreciptation}
+                                  // setNewPreciptation={setNewPreciptation}
                                   precipitation={`${dataCalc.data[index].precipitacao}mm`}
                                   groundStatus={
-                                    dataCalc.data[index].status_solo || "---"
+                                    dataCalc.data[index].status_solo || '0'
                                   }
                                   irrigationValue={
                                     getValue(dataCalc.data[index]
                                       .volume_aplicado_setor,  dataCalc.data[index]
                                       .tempo_irrigacao_sugerido_area_setor || "---" )
-                                  }
+                                  } 
+
                                   irrigationValueTotal={
                                     getValue(dataCalc.data[index]
                                       .volume_aplicado_area_total,  dataCalc.data[index]
@@ -588,5 +591,5 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
         </S.CultureContainer>
       )}
     </>
-  );
+  )
 };

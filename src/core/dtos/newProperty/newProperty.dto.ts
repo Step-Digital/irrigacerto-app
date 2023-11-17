@@ -20,11 +20,8 @@ export type NewGroundDTO = {
 
 export type NewBombDTO = {
   fabricante: string;
-  modelo: string;
   potencia: string;
   vazao_maxima: number;
-  consumo: number;
-  valor_kw: number;
   ativada: boolean;
   id_propriedade: number;
 }

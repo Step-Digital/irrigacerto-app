@@ -17,6 +17,7 @@ export const StyledHeader= styled.View`
     align-items: center;
 
     padding: 90px 80px 40px 80px;
+
   `}
 `;
 

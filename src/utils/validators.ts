@@ -75,8 +75,6 @@ export const signupValidators = Yup.object().shape({
     .min(8, RULES.PASSWORD.VALID)
     .required(RULES.GENERAL.REQUIRED),
   cep: Yup.string().required(RULES.GENERAL.REQUIRED),
-  logradouro: Yup.string().required(RULES.GENERAL.REQUIRED),
-  numero: Yup.string().required(RULES.GENERAL.REQUIRED),
   estado: Yup.string().required(RULES.GENERAL.REQUIRED),
   cidade: Yup.string().required(RULES.GENERAL.REQUIRED),
 });
@@ -101,11 +99,8 @@ export const groundValidators = Yup.object().shape({
 
 export const bombValidators = Yup.object().shape({
   fabricante: Yup.string().required(RULES.GENERAL.REQUIRED),
-  modelo: Yup.string().required(RULES.GENERAL.REQUIRED),
   potencia: Yup.string().required(RULES.GENERAL.REQUIRED),
   vazao_maxima: Yup.string().required(RULES.GENERAL.REQUIRED),
-  consumo: Yup.string().required(RULES.GENERAL.REQUIRED),
-  valor_kw: Yup.string().required(RULES.GENERAL.REQUIRED),
 });
 
 export const systemValidators = Yup.object().shape({
@@ -125,7 +120,6 @@ export const cultureValidators = Yup.object().shape({
   nome_cultura: Yup.string().required(RULES.GENERAL.REQUIRED),
   data_plantio: Yup.string().required(RULES.GENERAL.REQUIRED),
   area_plantio: Yup.string().required(RULES.GENERAL.REQUIRED),
-  setores: Yup.string().required(RULES.GENERAL.REQUIRED),
   estagio_colheita: Yup.string().required(RULES.GENERAL.REQUIRED),
   id_dados_cultura: Yup.string().required(RULES.GENERAL.REQUIRED),
   id_propriedade: Yup.string().required(RULES.GENERAL.REQUIRED),

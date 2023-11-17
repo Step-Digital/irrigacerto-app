@@ -62,7 +62,6 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
             <View
               style={{
                 paddingHorizontal: 16,
-                marginTop: 10,
               }}
             >
               <Image
@@ -72,6 +71,12 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
                 contentFit="fill"
                 transition={1000}
               />
+              <Typography color="gray-8" size="large" weight="regular" style={{ textAlign: 'center', marginTop: 12 }}>
+                Desenvolvido por&nbsp;
+                <Typography color="gray-8" size="large" weight="bold" style={{ textAlign: 'center' }}>
+                  Incaper
+                </Typography>
+              </Typography>
             </View>
             <S.StyledActions>
               <Button
@@ -107,8 +112,8 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
 
 const localStyles = StyleSheet.create({
   nameAppImage: {
-    width: 200,
-    height: 91,
+    width: 240,
+    height: 121,
   },
   logoImage: {
     width: 120,
@@ -118,6 +123,6 @@ const localStyles = StyleSheet.create({
   },
   sponsorsImage: {
     width: "100%",
-    height: 200,
+    height: 280,
   },
 });
