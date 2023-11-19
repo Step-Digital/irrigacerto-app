@@ -43,7 +43,7 @@ export const HeaderAuth: React.FC<{
         }}
       >
         <Image
-          source={require("../../../../assets/blue-new-logo.png")}
+          source={require("../../../../assets/newlogo-dark.png")}
           contentFit="contain"
           transition={1000}
           style={{

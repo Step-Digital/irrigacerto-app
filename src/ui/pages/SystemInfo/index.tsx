@@ -96,7 +96,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
 
   const validateValues = {
     nome,
-    eficiencia_irrigacao,
     area_total_plantio,
     quantidade_setores,
     tipo_irrigacao,
@@ -109,11 +108,8 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
 
   const sumbitValues = {
     nome,
-    eficiencia_irrigacao: Number(eficiencia_irrigacao),
-    area_total_plantio: Number(area_total_plantio),
     quantidade_setores: Number(quantidade_setores),
     tipo_irrigacao: tipo_irrigacao === 'Aspersão Convencional' ? 2 : 1,
-    nome_setor,
     area_irrigada: Number(area_irrigada),
     espacamento_linha: Number(espacamento_linha),
     coeficiente_uniformidade: Number(coeficiente_uniformidade),
@@ -212,20 +208,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
               value={nome}
               onChangeText={(value) => setNome(value)}
             />
-            <Input
-              label={inputStrings.efficiency.label}
-              placeholder={inputStrings.efficiency.placeholder}
-              value={eficiencia_irrigacao}
-              onChangeText={(value) => setEficiencia_irrigacao(value)}
-              inputMode="numeric"
-            />
-            <Input
-              label={inputStrings.area.label}
-              placeholder={inputStrings.area.placeholder}
-              value={area_total_plantio}
-              onChangeText={(value) => setArea_total_plantio(value)}
-              inputMode="numeric"
-            />
             <View>
               <Input
                 label={inputStrings.sectorQuantity.label}
@@ -247,14 +229,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
 
             {tipo_irrigacao === "Aspersão Convencional" && (
               <>
-                <View>
-                  <Input
-                    label={inputStrings.sectorName.label}
-                    placeholder={inputStrings.sectorName.placeholder}
-                    value={nome_setor}
-                    onChangeText={(value) => setNome_setor(value)}
-                  />
-                </View>
                 <View>
 
                 <Input

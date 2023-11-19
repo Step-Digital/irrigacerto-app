@@ -83,7 +83,6 @@ export const propertyValidators = Yup.object().shape({
   nome: Yup.string().required(RULES.GENERAL.REQUIRED),
   latitude: Yup.string().required(RULES.GENERAL.REQUIRED),
   longitude: Yup.string().required(RULES.GENERAL.REQUIRED),
-  logradouro: Yup.string().required(RULES.GENERAL.REQUIRED),
   cidade: Yup.string().required(RULES.GENERAL.REQUIRED),
   estado: Yup.string().required(RULES.GENERAL.REQUIRED),
   cep: Yup.string().max(9).required(RULES.GENERAL.REQUIRED),
@@ -105,13 +104,10 @@ export const bombValidators = Yup.object().shape({
 
 export const systemValidators = Yup.object().shape({
   nome: Yup.string().required(RULES.GENERAL.REQUIRED),
-  eficiencia_irrigacao: Yup.string().required(RULES.GENERAL.REQUIRED),
-  area_total_plantio: Yup.string().required(RULES.GENERAL.REQUIRED),
   quantidade_setores: Yup.string().required(RULES.GENERAL.REQUIRED),
   tipo_irrigacao: Yup.string().required(RULES.GENERAL.REQUIRED),
   area_irrigada: Yup.string().required(RULES.GENERAL.REQUIRED),
   espacamento_linha: Yup.string().required(RULES.GENERAL.REQUIRED),
-  nome_setor: Yup.string().required(RULES.GENERAL.REQUIRED),
   coeficiente_uniformidade: Yup.string().required(RULES.GENERAL.REQUIRED),
   eficiencia_sistema: Yup.string().required(RULES.GENERAL.REQUIRED),
 });

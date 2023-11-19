@@ -59,7 +59,6 @@ export const NewPropertyScreen: React.FC<NewPropertyProps> = ({
     nome,
     latitude,
     longitude,
-    logradouro,
     cidade,
     estado,
     cep,
@@ -70,7 +69,6 @@ export const NewPropertyScreen: React.FC<NewPropertyProps> = ({
     nome,
     latitude,
     longitude,
-    logradouro,
     cidade,
     estado,
     cep,
@@ -323,12 +321,6 @@ export const NewPropertyScreen: React.FC<NewPropertyProps> = ({
                   stateValue={estado}
                 />
               </S.InputsContainer>
-              <Input
-                label={inputStrings.street.label}
-                placeholder={inputStrings.street.placeholder}
-                value={logradouro}
-                onChangeText={(value) => setLogradouro(value)}
-              />
               <View>
                 <Input
                   label={inputStrings.city.label}

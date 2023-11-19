@@ -179,6 +179,7 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
             placeholder={inputStrings.password.placeholder}
             value={password}
             onChangeText={(value) => setPassword(value)}
+            secureTextEntry
           />
           <View>
 
@@ -187,6 +188,7 @@ export const SignupScreen: React.FC<SignupProps> = ({ auth }) => {
             placeholder={inputStrings.passwordConfirm.placeholder}
             value={passwordConfirm}
             onChangeText={(value) => setPasswordConfirm(value)}
+            secureTextEntry
             />
             </View>
 

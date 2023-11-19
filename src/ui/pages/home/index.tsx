@@ -22,20 +22,20 @@ type HomeProps = {
 export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
   const navigation = useNavigation<NavigationProps>();
 
-  const autoLogin = useMutation({
-    mutationFn: () => {
-      return cache.get({ key: "@token" });
-    },
-    onSuccess: (data) => {
-      if (data !== null) {
-        return navigation.navigate("HomeLogged");
-      }
-    },
-  });
+  // const autoLogin = useMutation({
+  //   mutationFn: () => {
+  //     return cache.get({ key: "@token" });
+  //   },
+  //   onSuccess: (data) => {
+  //     if (data !== null) {
+  //       return navigation.navigate("HomeLogged");
+  //     }
+  //   },
+  // });
 
-  useEffect(() => {
-    autoLogin.mutate();
-  }, []);
+  // useEffect(() => {
+  //   autoLogin.mutate();
+  // }, []);
 
   return (
     <S.StyledView>
@@ -47,17 +47,17 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
       <S.StyledHeader>
         <Image
           style={localStyles.nameAppImage}
-          source={require("../../../../assets/white-new-logo.png")}
+          source={require("../../../../assets/newlogo-white.png")}
           placeholder={"asdas"}
           contentFit="contain"
           transition={1000}
         />
       </S.StyledHeader>
       <S.StyledContent>
-        {autoLogin.isLoading && (
+        {/* {autoLogin.isLoading && (
           <ActivityIndicator size={"large"} color={"#00344A"} />
-        )}
-        {!autoLogin.isLoading && (
+        )} */}
+        {/* {!autoLogin.isLoading && ( */}
           <>
             <View
               style={{
@@ -97,23 +97,23 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
               </Button>
             </S.StyledActions>
           </>
-        )}
+        {/* )} */}
       </S.StyledContent>
-      {autoLogin.isError && (
+      {/* {autoLogin.isError && (
         <FlashMessage
           title="Efetue o login para acessar o sistema"
           show
           duration={3000}
         />
-      )}
+      )} */}
     </S.StyledView>
   );
 };
 
 const localStyles = StyleSheet.create({
   nameAppImage: {
-    width: 240,
-    height: 121,
+    width: 280,
+    height: 141,
   },
   logoImage: {
     width: 120,

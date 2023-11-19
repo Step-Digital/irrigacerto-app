@@ -323,11 +323,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                   stage={item.estagio_colheita}
                                   propertyService={propertyService}
                                   propertySelected={propertySelected}
-                                  refetchCalc={refetchCalc}
+                                  refetchCalc={refetch}
                                   editPreciptation={() => editProperty.mutate()}
                                   // newPreciptation={newPreciptation}
                                   // setNewPreciptation={setNewPreciptation}
-                                  precipitation={`${dataCalc.data[index].precipitacao}mm`}
+                                  precipitation={`${it.precipitacao}mm`}
                                   groundStatus={
                                     dataCalc.data[index].status_solo || '0'
                                   }

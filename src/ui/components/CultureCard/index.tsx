@@ -135,18 +135,6 @@ export const CultureCard: React.FC = ({
           >
             Estágio: {stage}
           </Typography>
-          <Typography
-            style={{
-              textAlign: "left",
-              fontFamily: "Poppins-regular",
-              fontSize: 14,
-            }}
-            color="gray-7"
-            size="normal"
-            weight="medium"
-          >
-            Setor: {sector}
-          </Typography>
         </S.TextContainer>
         <S.ActionsButton onPress={() => setOpenEdit(!openEdit)}>
           <Image

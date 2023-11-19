@@ -2,7 +2,6 @@ export type NewPropertyDTO = {
   nome: string;
   latitude: string;
   longitude: string;
-  logradouro: string;
   cidade: string;
   estado: string;
   cep: string;
@@ -28,11 +27,8 @@ export type NewBombDTO = {
 
 export type SystemInfoDTO = {
   nome: string,
-  eficiencia_irrigacao: number;
-  area_total_plantio: number;
   quantidade_setores: number;
   tipo_irrigacao: number;
-  nome_setor: string;
   area_irrigada: number;
   espacamento_linha: number;
   coeficiente_uniformidade: number;
