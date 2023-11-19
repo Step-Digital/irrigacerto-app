@@ -27,7 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.irrigacerto.stepdigital</string>
+          <string>com.manejoIrrigacerto.app</string>
         </array>
       </dict>
     </array>
