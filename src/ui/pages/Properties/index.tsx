@@ -1163,30 +1163,36 @@ export const Properties: React.FC<PropertiesProps> = ({
                     />
                     <View>
 
-                    <Input
-                      label={inputSystemStrings.sprinklerFlow.label}
-                      placeholder={inputSystemStrings.sprinklerFlow.placeholder}
-                      value={vazao_aspressor}
-                      onChangeText={(value) => setVazao_aspressor(value)}
-                      inputMode="numeric"
+                      <Input
+                        label={inputSystemStrings.sprinklerFlow.label}
+                        placeholder={inputSystemStrings.sprinklerFlow.placeholder}
+                        value={vazao_aspressor}
+                        onChangeText={(value) => setVazao_aspressor(value)}
+                        inputMode="numeric"
                       />
-                      </View>
-                    <Input
-                      label={inputSystemStrings.sprinklerSpace.label}
-                      placeholder={
-                        inputSystemStrings.sprinklerSpace.placeholder
-                      }
-                      value={espacamento_aspressor}
-                      onChangeText={(value) => setEspacamento_aspressor(value)}
-                      inputMode="numeric"
-                    />
-                    <Input
-                      label={inputSystemStrings.linesSpace.label}
-                      placeholder={inputSystemStrings.linesSpace.placeholder}
-                      value={espacamento_linha}
-                      onChangeText={(value) => setEspacamento_linha(value)}
-                      inputMode="numeric"
-                    />
+                    </View>
+                    <View>
+
+                      <Input
+                        label={inputSystemStrings.sprinklerSpace.label}
+                        placeholder={
+                          inputSystemStrings.sprinklerSpace.placeholder
+                        }
+                        value={espacamento_aspressor}
+                        onChangeText={(value) => setEspacamento_aspressor(value)}
+                        inputMode="numeric"
+                      />
+                    </View>
+                    <View>
+
+                      <Input
+                        label={inputSystemStrings.linesSpace.label}
+                        placeholder={inputSystemStrings.linesSpace.placeholder}
+                        value={espacamento_linha}
+                        onChangeText={(value) => setEspacamento_linha(value)}
+                        inputMode="numeric"
+                      />
+                    </View>
                     <Input
                       label={inputSystemStrings.CUC.label}
                       placeholder={inputSystemStrings.CUC.placeholder}
@@ -1218,28 +1224,31 @@ export const Properties: React.FC<PropertiesProps> = ({
                     />
                     <View>
 
-                    <Input
-                      label={inputSystemStrings.issuerFlow.label}
-                      placeholder={inputSystemStrings.issuerFlow.placeholder}
-                      value={vazao_emissor}
-                      onChangeText={(value) => setVazao_emissor(value)}
+                      <Input
+                        label={inputSystemStrings.issuerFlow.label}
+                        placeholder={inputSystemStrings.issuerFlow.placeholder}
+                        value={vazao_emissor}
+                        onChangeText={(value) => setVazao_emissor(value)}
                       />
-                      </View>
-                      <View>
+                    </View>
+                    <View>
 
-                    <Input
-                      label={inputSystemStrings.issuerSpace.label}
-                      placeholder={inputSystemStrings.issuerSpace.placeholder}
-                      value={espacamento_emissor}
-                      onChangeText={(value) => setEspacamento_emissor(value)}
+                      <Input
+                        label={inputSystemStrings.issuerSpace.label}
+                        placeholder={inputSystemStrings.issuerSpace.placeholder}
+                        value={espacamento_emissor}
+                        onChangeText={(value) => setEspacamento_emissor(value)}
                       />
-                      </View>
-                    <Input
-                      label={inputSystemStrings.linesSpace.label}
-                      placeholder={inputSystemStrings.linesSpace.placeholder}
-                      value={espacamento_linha}
-                      onChangeText={(value) => setEspacamento_linha(value)}
-                    />
+                    </View>
+                    <View>
+
+                      <Input
+                        label={inputSystemStrings.linesSpace.label}
+                        placeholder={inputSystemStrings.linesSpace.placeholder}
+                        value={espacamento_linha}
+                        onChangeText={(value) => setEspacamento_linha(value)}
+                      />
+                    </View>
                     <Input
                       label={inputSystemStrings.CUC.label}
                       placeholder={inputSystemStrings.CUC.placeholder}
@@ -1302,18 +1311,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                           <S.CardContent>
                             <S.InfoTitle>{item.nome}</S.InfoTitle>
                             <S.InfoText>
-                              Eficiência de Irrigação:{" "}
-                              <S.InfoTextBold>
-                                {item.eficiencia_irrigacao}%
-                              </S.InfoTextBold>
-                            </S.InfoText>
-                            <S.InfoText>
-                              Área total do Plantio:{" "}
-                              <S.InfoTextBold>
-                                {item.area_total_plantio}m²
-                              </S.InfoTextBold>
-                            </S.InfoText>
-                            <S.InfoText>
                               Quantidade de Setores:{" "}
                               <S.InfoTextBold>
                                 {item.quantidade_setores}
@@ -1324,10 +1321,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                               <S.InfoTextBold>
                                 {item.tipo_irrigacao}
                               </S.InfoTextBold>
-                            </S.InfoText>
-                            <S.InfoText>
-                              Nome do Setor:{" "}
-                              <S.InfoTextBold>{item.nome_setor}</S.InfoTextBold>
                             </S.InfoText>
                             <S.InfoText>
                               Área irrigada:{" "}
@@ -1388,18 +1381,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                           <S.CardContent>
                             <S.InfoTitle>{item.nome}</S.InfoTitle>
                             <S.InfoText>
-                              Eficiência de Irrigação:{" "}
-                              <S.InfoTextBold>
-                                {item.eficiencia_irrigacao}%
-                              </S.InfoTextBold>
-                            </S.InfoText>
-                            <S.InfoText>
-                              Área total do Plantio:{" "}
-                              <S.InfoTextBold>
-                                {item.area_total_plantio}m²
-                              </S.InfoTextBold>
-                            </S.InfoText>
-                            <S.InfoText>
                               Quantidade de Setores:{" "}
                               <S.InfoTextBold>
                                 {item.quantidade_setores}
@@ -1410,10 +1391,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                               <S.InfoTextBold>
                                 {item.tipo_irrigacao}
                               </S.InfoTextBold>
-                            </S.InfoText>
-                            <S.InfoText>
-                              Nome do Setor:{" "}
-                              <S.InfoTextBold>{item.nome_setor}</S.InfoTextBold>
                             </S.InfoText>
                             <S.InfoText>
                               Área irrigada:{" "}

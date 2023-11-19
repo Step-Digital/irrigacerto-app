@@ -34,7 +34,7 @@ export const GlobalRoutes: React.FC = () => {
     >
       <Stack.Screen name="Home" component={MakeHome} />
       <Stack.Screen name="Login" component={MakeLogin} />
-      <Stack.Screen name="HomeLogged" component={MakeHomeLogged} />
+      <Stack.Screen options={{ gestureEnabled: false }} name="HomeLogged" component={MakeHomeLogged} />
       <Stack.Screen name="Signup" component={MakeSignup} />
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
       <Stack.Screen name="NewProperty" component={MakeNewProperty} />
@@ -47,7 +47,7 @@ export const GlobalRoutes: React.FC = () => {
       <Stack.Screen name="Menu" component={MakeMenu} />
       <Stack.Screen name="About" component={About} />
       <Stack.Screen name="Profile" component={MakeProfile} />
-      <Stack.Screen name="Properties" component={MakeProperties} />
+      <Stack.Screen options={{ gestureEnabled: false }} name="Properties" component={MakeProperties} />
       
 
     </Stack.Navigator>
