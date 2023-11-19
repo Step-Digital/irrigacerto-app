@@ -181,8 +181,6 @@ export const BombInfo:React.FC<BombInfoProps> = ({ bombService, propertyService 
                 <S.InfoText>Fabricante: <S.InfoTextBold>{item.fabricante}</S.InfoTextBold></S.InfoText>
                 <S.InfoText>Potência: <S.InfoTextBold>{item.potencia}w</S.InfoTextBold></S.InfoText>
                 <S.InfoText>Vazão Máxima: <S.InfoTextBold>{item.vazao_maxima}m³/ha</S.InfoTextBold></S.InfoText>
-                <S.InfoText>Consumo: <S.InfoTextBold>{item.consumo}kw/h</S.InfoTextBold></S.InfoText>
-                <S.InfoText>Valor do Kw: <S.InfoTextBold>R${item.valor_kw}</S.InfoTextBold></S.InfoText>
               </S.CardContent>
               <TouchableOpacity onPress={() => removeBomb.mutate(item.id_motobomba)}>
                 <Ionicons name="trash-outline" size={24} color="red" />

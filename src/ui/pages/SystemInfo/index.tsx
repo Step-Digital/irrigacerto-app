@@ -365,18 +365,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                       <S.CardContent>
                         <S.InfoTitle>{item.nome}</S.InfoTitle>
                         <S.InfoText>
-                          Eficiência de Irrigação:{" "}
-                          <S.InfoTextBold>
-                            {item.eficiencia_irrigacao}%
-                          </S.InfoTextBold>
-                        </S.InfoText>
-                        <S.InfoText>
-                          Área total do Plantio:{" "}
-                          <S.InfoTextBold>
-                            {item.area_total_plantio}m²
-                          </S.InfoTextBold>
-                        </S.InfoText>
-                        <S.InfoText>
                           Quantidade de Setores:{" "}
                           <S.InfoTextBold>
                             {item.quantidade_setores}
@@ -385,10 +373,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                         <S.InfoText>
                           Tipo de Irrigação:{" "}
                           <S.InfoTextBold>{item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}</S.InfoTextBold>
-                        </S.InfoText>
-                        <S.InfoText>
-                          Nome do Setor:{" "}
-                          <S.InfoTextBold>{item.nome_setor}</S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Área irrigada:{" "}
@@ -443,18 +427,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                       <S.CardContent>
                         <S.InfoTitle>{item.nome}</S.InfoTitle>
                         <S.InfoText>
-                          Eficiência de Irrigação:{" "}
-                          <S.InfoTextBold>
-                            {item.eficiencia_irrigacao}%
-                          </S.InfoTextBold>
-                        </S.InfoText>
-                        <S.InfoText>
-                          Área total do Plantio:{" "}
-                          <S.InfoTextBold>
-                            {item.area_total_plantio}m²
-                          </S.InfoTextBold>
-                        </S.InfoText>
-                        <S.InfoText>
                           Quantidade de Setores:{" "}
                           <S.InfoTextBold>
                             {item.quantidade_setores}
@@ -463,10 +435,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                         <S.InfoText>
                           Tipo de Irrigação:{" "}
                           <S.InfoTextBold>{item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}</S.InfoTextBold>
-                        </S.InfoText>
-                        <S.InfoText>
-                          Nome do Setor:{" "}
-                          <S.InfoTextBold>{item.nome_setor}</S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Área irrigada:{" "}
