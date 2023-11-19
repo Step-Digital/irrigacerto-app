@@ -1155,12 +1155,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                 {tipo_irrigacao === "Aspersão Convencional" && (
                   <>
                     <Input
-                      label={inputSystemStrings.sectorName.label}
-                      placeholder={inputSystemStrings.sectorName.placeholder}
-                      value={nome_setor}
-                      onChangeText={(value) => setNome_setor(value)}
-                    />
-                    <Input
                       label={inputSystemStrings.irrigatedArea.label}
                       placeholder={inputSystemStrings.irrigatedArea.placeholder}
                       value={area_irrigada}
@@ -1216,12 +1210,6 @@ export const Properties: React.FC<PropertiesProps> = ({
 
                 {tipo_irrigacao === "Microaspersão ou Gotejamento" && (
                   <>
-                    <Input
-                      label={inputSystemStrings.sectorName.label}
-                      placeholder={inputSystemStrings.sectorName.placeholder}
-                      value={nome_setor}
-                      onChangeText={(value) => setNome_setor(value)}
-                    />
                     <Input
                       label={inputSystemStrings.irrigatedArea.label}
                       placeholder={inputSystemStrings.irrigatedArea.placeholder}
