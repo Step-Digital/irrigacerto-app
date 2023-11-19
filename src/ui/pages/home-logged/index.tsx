@@ -129,6 +129,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   const [selectedEditSystem, setSelectedEditSystem] = useState(
     cultureSelected && cultureSelected.sistema_irrigacao
   );
+
+  const { goBack, setOptions } = useNavigation();
+
   const sumbitValues = {
     nome_cultura,
     data_plantio,
@@ -286,6 +289,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
   useEffect(() => {
     getFirst();
   }, []);
+
+
+  useEffect(() => {
+    setOptions({ gestureEnabled: false });
+  }, [setOptions]);
 
   const getValue = (irrigationValue, time) => {
     const hours = Number(time.split(':')[0])
