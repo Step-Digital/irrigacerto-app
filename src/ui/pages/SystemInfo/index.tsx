@@ -151,7 +151,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
   }
 
   const removeSystem = useMutation<AxiosError>({
-    // VER COMO PASSA VARIÁVEL PARA O USEMUTATION
     mutationFn: (id) => irrigationSystemService.deleteSystem(Number(id)),
     mutationKey: ["irrigationSystems"],
     onSuccess: (data) => {
@@ -231,14 +230,14 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
               <>
                 <View>
 
-                <Input
-                  label={inputStrings.irrigatedArea.label}
-                  placeholder={inputStrings.irrigatedArea.placeholder}
-                  value={area_irrigada}
-                  onChangeText={(value) => setArea_irrigada(value)}
-                  inputMode="numeric"
+                  <Input
+                    label={inputStrings.irrigatedArea.label}
+                    placeholder={inputStrings.irrigatedArea.placeholder}
+                    value={area_irrigada}
+                    onChangeText={(value) => setArea_irrigada(value)}
+                    inputMode="numeric"
                   />
-                  </View>
+                </View>
                 <Input
                   label={inputStrings.sprinklerFlow.label}
                   placeholder={inputStrings.sprinklerFlow.placeholder}
@@ -246,20 +245,26 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                   onChangeText={(value) => setVazao_aspressor(value)}
                   inputMode="numeric"
                 />
-                <Input
-                  label={inputStrings.sprinklerSpace.label}
-                  placeholder={inputStrings.sprinklerSpace.placeholder}
-                  value={espacamento_aspressor}
-                  onChangeText={(value) => setEspacamento_aspressor(value)}
-                  inputMode="numeric"
-                />
-                <Input
-                  label={inputStrings.linesSpace.label}
-                  placeholder={inputStrings.linesSpace.placeholder}
-                  value={espacamento_linha}
-                  onChangeText={(value) => setEspacamento_linha(value)}
-                  inputMode="numeric"
-                />
+                <View>
+
+                  <Input
+                    label={inputStrings.sprinklerSpace.label}
+                    placeholder={inputStrings.sprinklerSpace.placeholder}
+                    value={espacamento_aspressor}
+                    onChangeText={(value) => setEspacamento_aspressor(value)}
+                    inputMode="numeric"
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.linesSpace.label}
+                    placeholder={inputStrings.linesSpace.placeholder}
+                    value={espacamento_linha}
+                    onChangeText={(value) => setEspacamento_linha(value)}
+                    inputMode="numeric"
+                  />
+                </View>
                 <Input
                   label={inputStrings.CUC.label}
                   placeholder={inputStrings.CUC.placeholder}
@@ -297,18 +302,24 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                     onChangeText={(value) => setArea_irrigada(value)}
                   />
                 </View>
-                <Input
-                  label={inputStrings.issuerFlow.label}
-                  placeholder={inputStrings.issuerFlow.placeholder}
-                  value={vazao_emissor}
-                  onChangeText={(value) => setVazao_emissor(value)}
-                />
-                <Input
-                  label={inputStrings.issuerSpace.label}
-                  placeholder={inputStrings.issuerSpace.placeholder}
-                  value={espacamento_emissor}
-                  onChangeText={(value) => setEspacamento_emissor(value)}
-                />
+                <View>
+
+                  <Input
+                    label={inputStrings.issuerFlow.label}
+                    placeholder={inputStrings.issuerFlow.placeholder}
+                    value={vazao_emissor}
+                    onChangeText={(value) => setVazao_emissor(value)}
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.issuerSpace.label}
+                    placeholder={inputStrings.issuerSpace.placeholder}
+                    value={espacamento_emissor}
+                    onChangeText={(value) => setEspacamento_emissor(value)}
+                  />
+                </View>
                 <Input
                   label={inputStrings.linesSpace.label}
                   placeholder={inputStrings.linesSpace.placeholder}

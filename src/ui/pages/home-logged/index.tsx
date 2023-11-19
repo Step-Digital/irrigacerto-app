@@ -146,20 +146,22 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     precipitacao: Number(newPreciptation),
   };
 
+  console.log('cultureSelected', JSON.stringify(cultureSelected, null, 2))
+
   const getAllDefaultValues = () => {
     setNome_cultura(cultureSelected.nome_cultura);
     setData_plantio(cultureSelected.data_plantio);
     setArea_plantio(cultureSelected.area_plantio);
     setEstagio_colheita(cultureSelected.estagio_colheita);
     setSetores(cultureSelected.setores);
-    setId_solo(cultureSelected.solo.id_solo);
-    setId_motobomba(cultureSelected.motobomba.id_motobomba);
-    setId_sistema_irrigacao(cultureSelected.sistema_irrigacao.id_sistema_irrigacao);
+    setId_solo(cultureSelected?.solo?.id_solo);
+    setId_motobomba(cultureSelected?.motobomba?.id_motobomba);
+    setId_sistema_irrigacao(cultureSelected?.sistema_irrigacao?.id_sistema_irrigacao);
     serId_dados_cultura(cultureSelected.dados_cultura.id_dados_cultura);
     setId_propriedade(cultureSelected.id_propriedade);
-    setSelectedEditGround(cultureSelected.solo.tipo_solo);
-    setSelectedEditBomb(cultureSelected.motobomba.modelo);
-    setSelectedEditSystem(cultureSelected.sistema_irrigacao.nome);
+    setSelectedEditGround(cultureSelected?.solo?.tipo_solo);
+    setSelectedEditBomb(cultureSelected?.motobomba?.fabricante);
+    setSelectedEditSystem(cultureSelected?.sistema_irrigacao?.nome);
     setSelectedEditProperty(cultureSelected.nome);
   };
 
@@ -234,7 +236,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     !bombQuery.isLoading && bombQuery.data &&
     bombQuery.data.data.map((item) => {
       return {
-        name: item.modelo,
+        name: item.fabricante,
         id: item.id_motobomba,
       };
     });
@@ -496,18 +498,10 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                     onChangeText={(value) => setArea_plantio(value)}
                   />
                 </View>
-                <View>
-                  <Input
-                    label={inputStrings.sector.label}
-                    placeholder={inputStrings.sector.placeholder}
-                    value={setores}
-                    onChangeText={(value) => setSetores(value)}
-                  />
-                </View>
                 <Input
                   label={inputStrings.stage.label}
                   placeholder={inputStrings.stage.placeholder}
-                  value={estagio_colheita}
+                  value={String(estagio_colheita)}
                   onChangeText={(value) => setEstagio_colheita(value)}
                   editable={false}
                 />

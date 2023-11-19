@@ -161,7 +161,7 @@ export const GroundInfo: React.FC<GroundInfoProps> = ({
           </Typography>
           <Select
             touchableText="Selecione..."
-            title="State"
+            title="Solo"
             objKey="id"
             objValue="name"
             data={groundTypes}

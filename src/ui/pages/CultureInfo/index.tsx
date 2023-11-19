@@ -144,7 +144,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
     !bombQuery.isLoading &&
     bombQuery.data.data.map((item) => {
       return {
-        name: item.modelo,
+        name: item.fabricante,
         id: item.id_motobomba,
       };
     });

@@ -429,7 +429,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                 animationType="slide"
                 visible={showModal}
                 transparent={true}
-                onRequestClose={() => {}}
+                onRequestClose={() => { }}
                 presentationStyle="overFullScreen"
               >
                 <S.ModalContainer>
@@ -498,7 +498,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                           weight="bold"
                         >
                           Solo (
-                          {propertyData.solo && findGround()[0].solo.length})
+                          {propertyData?.solo && findGround()[0]?.solo?.length})
                         </Typography>
                         <S.EditButton onPress={() => setActualScreen("ground")}>
                           <Typography
@@ -515,10 +515,10 @@ export const Properties: React.FC<PropertiesProps> = ({
                           </Typography>
                         </S.EditButton>
                       </S.SectionHeader>
-                      {propertyData.solo && propertyData.solo.length > 0 && (
+                      {propertyData?.solo && propertyData?.solo?.length > 0 && (
                         <>
                           {propertyData &&
-                            findGround()[0].solo.map((item) => {
+                            findGround()[0]?.solo?.map((item) => {
                               return (
                                 <S.SectioContent>
                                   <View>
@@ -568,8 +568,8 @@ export const Properties: React.FC<PropertiesProps> = ({
                           weight="bold"
                         >
                           Motobomba (
-                          {propertyData.motobomba &&
-                            findGround()[0].motobomba.length}
+                          {propertyData?.motobomba &&
+                            findGround()[0]?.motobomba?.length}
                           )
                         </Typography>
                         <S.EditButton onPress={() => setActualScreen("bombs")}>
@@ -587,8 +587,8 @@ export const Properties: React.FC<PropertiesProps> = ({
                           </Typography>
                         </S.EditButton>
                       </S.SectionHeader>
-                      {propertyData.motobomba &&
-                        propertyData.motobomba.length > 0 && (
+                      {propertyData?.motobomba &&
+                        propertyData?.motobomba?.length > 0 && (
                           <>
                             {propertyData &&
                               findGround()[0].motobomba.map((item) => {
@@ -653,8 +653,8 @@ export const Properties: React.FC<PropertiesProps> = ({
                           weight="bold"
                         >
                           Sistema de irrigação (
-                          {propertyData.sistema_irrigacao &&
-                            findGround()[0].sistema_irrigacao.length}
+                          {propertyData?.sistema_irrigacao &&
+                            findGround()[0]?.sistema_irrigacao?.length}
                           )
                         </Typography>
                         <S.EditButton
@@ -674,11 +674,11 @@ export const Properties: React.FC<PropertiesProps> = ({
                           </Typography>
                         </S.EditButton>
                       </S.SectionHeader>
-                      {propertyData.sistema_irrigacao &&
-                        propertyData.sistema_irrigacao.length > 0 && (
+                      {propertyData?.sistema_irrigacao &&
+                        propertyData?.sistema_irrigacao?.length > 0 && (
                           <>
                             {propertyData &&
-                              findGround()[0].sistema_irrigacao.map((item) => {
+                              findGround()[0]?.sistema_irrigacao.map((item) => {
                                 return (
                                   <S.SectioContent>
                                     <View>
@@ -703,7 +703,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                                       <S.InfoText>
                                         Tipo:{" "}
                                         <S.InfoTextBold>
-                                        {item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}
+                                          {item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}
                                         </S.InfoTextBold>
                                       </S.InfoText>
                                       <S.InfoText>
@@ -841,7 +841,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                 data={groundTypes}
                 label="Tipo de Solo"
                 setValue={(value) => setTipo_solo(value)}
-                setId={() => {}}
+                setId={() => { }}
                 stateValue={undefined}
                 clean={cleanGround}
               />
@@ -992,12 +992,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                   onChangeText={(value) => setFabricante(value)}
                 />
                 <Input
-                  label={inputBombsStrings.model.label}
-                  placeholder={inputBombsStrings.model.placeholder}
-                  value={modelo}
-                  onChangeText={(value) => setModelo(value)}
-                />
-                <Input
                   label={inputBombsStrings.power.label}
                   placeholder={inputBombsStrings.power.placeholder}
                   value={potencia}
@@ -1013,23 +1007,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                     inputMode="numeric"
                   />
                 </View>
-                <View>
-                  <Input
-                    label={inputBombsStrings.consumption.label}
-                    placeholder={inputBombsStrings.consumption.placeholder}
-                    value={consumo}
-                    onChangeText={(value) => setConsumo(value)}
-                    inputMode="numeric"
-                  />
-                </View>
-                <Input
-                  label={inputBombsStrings.value.label}
-                  placeholder={inputBombsStrings.value.placeholder}
-                  value={valor_kw}
-                  onChangeText={(value) => setValor_kw(value)}
-                  inputMode="numeric"
-                />
-
                 <S.AddBombsButton onPress={() => onSumbitBomb()}>
                   <Ionicons name="add" size={24} color="#fff" />
                   <Typography
@@ -1049,7 +1026,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                   findGround()[0].motobomba.map((item) => (
                     <S.CardContainer key={item.id_motobomba}>
                       <S.CardContent>
-                        <S.InfoTitle>{item.modelo}</S.InfoTitle>
                         <S.InfoText>
                           Fabricante:{" "}
                           <S.InfoTextBold>{item.fabricante}</S.InfoTextBold>
@@ -1064,14 +1040,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                             {item.vazao_maxima}m³/ha
                           </S.InfoTextBold>
                         </S.InfoText>
-                        <S.InfoText>
-                          Consumo:{" "}
-                          <S.InfoTextBold>{item.consumo}kw/h</S.InfoTextBold>
-                        </S.InfoText>
-                        <S.InfoText>
-                          Valor do Kw:{" "}
-                          <S.InfoTextBold>R${item.valor_kw}</S.InfoTextBold>
-                        </S.InfoText>
                       </S.CardContent>
                       <TouchableOpacity
                         onPress={() => removeBomb.mutate(item.id_motobomba)}
@@ -1081,55 +1049,55 @@ export const Properties: React.FC<PropertiesProps> = ({
                     </S.CardContainer>
                   ))}
                 <S.ButtonsContainer>
-                <Button
-                  onPress={() => setActualScreen("main")}
-                  bg-color="negative"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginTop: 24,
-                    marginBottom: 24,
-                    width: "45%",
-                  }}
-                >
-                  <Typography
+                  <Button
+                    onPress={() => setActualScreen("main")}
+                    bg-color="negative"
                     style={{
-                      fontFamily: "Poppins-regular",
-                      fontSize: 18,
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      marginTop: 24,
+                      marginBottom: 24,
+                      width: "45%",
                     }}
-                    color="pure-white"
-                    size="normal"
-                    weight="bold"
                   >
-                    Voltar
-                  </Typography>
-                </Button>
-                <Button
-                  onPress={() => setActualScreen("main")}
-                  bg-color="positive"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginTop: 24,
-                    marginBottom: 24,
-                    width: "45%",
-                  }}
-                >
-                  <Typography
+                    <Typography
+                      style={{
+                        fontFamily: "Poppins-regular",
+                        fontSize: 18,
+                      }}
+                      color="pure-white"
+                      size="normal"
+                      weight="bold"
+                    >
+                      Voltar
+                    </Typography>
+                  </Button>
+                  <Button
+                    onPress={() => setActualScreen("main")}
+                    bg-color="positive"
                     style={{
-                      fontFamily: "Poppins-regular",
-                      fontSize: 18,
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      marginTop: 24,
+                      marginBottom: 24,
+                      width: "45%",
                     }}
-                    color="pure-white"
-                    size="normal"
-                    weight="bold"
                   >
-                    Salvar
-                  </Typography>
-                </Button>
-              </S.ButtonsContainer>
+                    <Typography
+                      style={{
+                        fontFamily: "Poppins-regular",
+                        fontSize: 18,
+                      }}
+                      color="pure-white"
+                      size="normal"
+                      weight="bold"
+                    >
+                      Salvar
+                    </Typography>
+                  </Button>
+                </S.ButtonsContainer>
               </View>
             </S.Content>
           </ScrollView>
@@ -1159,20 +1127,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                   value={nome}
                   onChangeText={(value) => setNome(value)}
                 />
-                <Input
-                  label={inputSystemStrings.efficiency.label}
-                  placeholder={inputSystemStrings.efficiency.placeholder}
-                  value={eficiencia_irrigacao}
-                  onChangeText={(value) => setEficiencia_irrigacao(value)}
-                  inputMode="numeric"
-                />
-                <Input
-                  label={inputSystemStrings.area.label}
-                  placeholder={inputSystemStrings.area.placeholder}
-                  value={area_total_plantio}
-                  onChangeText={(value) => setArea_total_plantio(value)}
-                  inputMode="numeric"
-                />
                 <View>
                   <Input
                     label={inputSystemStrings.sectorQuantity.label}
@@ -1190,11 +1144,13 @@ export const Properties: React.FC<PropertiesProps> = ({
                     }
                     data={irrigationTypeSelect}
                     setValue={setTipo_irrigacao}
-                    setId={() => {}}
+                    setId={() => { }}
                     stateValue={undefined}
                     clean={cleanGround}
                   />
                 </View>
+
+                {console.log('tipo_irrigacao', tipo_irrigacao)}
 
                 {tipo_irrigacao === "Aspersão Convencional" && (
                   <>
@@ -1211,13 +1167,16 @@ export const Properties: React.FC<PropertiesProps> = ({
                       onChangeText={(value) => setArea_irrigada(value)}
                       inputMode="numeric"
                     />
+                    <View>
+
                     <Input
                       label={inputSystemStrings.sprinklerFlow.label}
                       placeholder={inputSystemStrings.sprinklerFlow.placeholder}
                       value={vazao_aspressor}
                       onChangeText={(value) => setVazao_aspressor(value)}
                       inputMode="numeric"
-                    />
+                      />
+                      </View>
                     <Input
                       label={inputSystemStrings.sprinklerSpace.label}
                       placeholder={
@@ -1269,18 +1228,24 @@ export const Properties: React.FC<PropertiesProps> = ({
                       value={area_irrigada}
                       onChangeText={(value) => setArea_irrigada(value)}
                     />
+                    <View>
+
                     <Input
                       label={inputSystemStrings.issuerFlow.label}
                       placeholder={inputSystemStrings.issuerFlow.placeholder}
                       value={vazao_emissor}
                       onChangeText={(value) => setVazao_emissor(value)}
-                    />
+                      />
+                      </View>
+                      <View>
+
                     <Input
                       label={inputSystemStrings.issuerSpace.label}
                       placeholder={inputSystemStrings.issuerSpace.placeholder}
                       value={espacamento_emissor}
                       onChangeText={(value) => setEspacamento_emissor(value)}
-                    />
+                      />
+                      </View>
                     <Input
                       label={inputSystemStrings.linesSpace.label}
                       placeholder={inputSystemStrings.linesSpace.placeholder}
@@ -1527,56 +1492,56 @@ export const Properties: React.FC<PropertiesProps> = ({
                     }
                   })}
 
-<S.ButtonsContainer>
-                <Button
-                  onPress={() => setActualScreen("main")}
-                  bg-color="negative"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginTop: 24,
-                    marginBottom: 24,
-                    width: "45%",
-                  }}
-                >
-                  <Typography
+                <S.ButtonsContainer>
+                  <Button
+                    onPress={() => setActualScreen("main")}
+                    bg-color="negative"
                     style={{
-                      fontFamily: "Poppins-regular",
-                      fontSize: 18,
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      marginTop: 24,
+                      marginBottom: 24,
+                      width: "45%",
                     }}
-                    color="pure-white"
-                    size="normal"
-                    weight="bold"
                   >
-                    Voltar
-                  </Typography>
-                </Button>
-                <Button
-                  onPress={() => setActualScreen("main")}
-                  bg-color="positive"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginTop: 24,
-                    marginBottom: 24,
-                    width: "45%",
-                  }}
-                >
-                  <Typography
+                    <Typography
+                      style={{
+                        fontFamily: "Poppins-regular",
+                        fontSize: 18,
+                      }}
+                      color="pure-white"
+                      size="normal"
+                      weight="bold"
+                    >
+                      Voltar
+                    </Typography>
+                  </Button>
+                  <Button
+                    onPress={() => setActualScreen("main")}
+                    bg-color="positive"
                     style={{
-                      fontFamily: "Poppins-regular",
-                      fontSize: 18,
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      marginTop: 24,
+                      marginBottom: 24,
+                      width: "45%",
                     }}
-                    color="pure-white"
-                    size="normal"
-                    weight="bold"
                   >
-                    Salvar
-                  </Typography>
-                </Button>
-              </S.ButtonsContainer>
+                    <Typography
+                      style={{
+                        fontFamily: "Poppins-regular",
+                        fontSize: 18,
+                      }}
+                      color="pure-white"
+                      size="normal"
+                      weight="bold"
+                    >
+                      Salvar
+                    </Typography>
+                  </Button>
+                </S.ButtonsContainer>
               </View>
             </S.Content>
           </ScrollView>
