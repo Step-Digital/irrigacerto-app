@@ -265,20 +265,27 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                     inputMode="numeric"
                   />
                 </View>
-                <Input
-                  label={inputStrings.CUC.label}
-                  placeholder={inputStrings.CUC.placeholder}
-                  value={coeficiente_uniformidade}
-                  onChangeText={(value) => setCoeficiente_uniformidade(value)}
-                  inputMode="numeric"
-                />
-                <Input
-                  label={inputStrings.efficiencySystem.label}
-                  placeholder={inputStrings.efficiencySystem.placeholder}
-                  value={eficiencia_sistema}
-                  onChangeText={(value) => setEficiencia_sistema(value)}
-                  inputMode="numeric"
-                />
+
+                <View>
+
+                  <Input
+                    label={inputStrings.CUC.label}
+                    placeholder={inputStrings.CUC.placeholder}
+                    value={coeficiente_uniformidade}
+                    onChangeText={(value) => setCoeficiente_uniformidade(value)}
+                    inputMode="numeric"
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.efficiencySystem.label}
+                    placeholder={inputStrings.efficiencySystem.placeholder}
+                    value={eficiencia_sistema}
+                    onChangeText={(value) => setEficiencia_sistema(value)}
+                    inputMode="numeric"
+                  />
+                </View>
               </>
             )}
 
@@ -320,36 +327,51 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                     onChangeText={(value) => setEspacamento_emissor(value)}
                   />
                 </View>
-                <Input
-                  label={inputStrings.linesSpace.label}
-                  placeholder={inputStrings.linesSpace.placeholder}
-                  value={espacamento_linha}
-                  onChangeText={(value) => setEspacamento_linha(value)}
-                />
-                <Input
-                  label={inputStrings.CUC.label}
-                  placeholder={inputStrings.CUC.placeholder}
-                  value={coeficiente_uniformidade}
-                  onChangeText={(value) => setCoeficiente_uniformidade(value)}
-                />
-                <Input
-                  label={inputStrings.efficiencySystem.label}
-                  placeholder={inputStrings.efficiencySystem.placeholder}
-                  value={eficiencia_sistema}
-                  onChangeText={(value) => setEficiencia_sistema(value)}
-                />
-                <Input
-                  label={inputStrings.wetAreaPercentage.label}
-                  placeholder={inputStrings.wetAreaPercentage.placeholder}
-                  value={percentual_area_molhada}
-                  onChangeText={(value) => setpercentual_area_molhada(value)}
-                />
-                <Input
-                  label={inputStrings.shadedAreaPercentage.label}
-                  placeholder={inputStrings.shadedAreaPercentage.placeholder}
-                  value={percentual_area_sombreada}
-                  onChangeText={(value) => setPercentual_area_sombreada(value)}
-                />
+                <View>
+
+                  <Input
+                    label={inputStrings.linesSpace.label}
+                    placeholder={inputStrings.linesSpace.placeholder}
+                    value={espacamento_linha}
+                    onChangeText={(value) => setEspacamento_linha(value)}
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.CUC.label}
+                    placeholder={inputStrings.CUC.placeholder}
+                    value={coeficiente_uniformidade}
+                    onChangeText={(value) => setCoeficiente_uniformidade(value)}
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.efficiencySystem.label}
+                    placeholder={inputStrings.efficiencySystem.placeholder}
+                    value={eficiencia_sistema}
+                    onChangeText={(value) => setEficiencia_sistema(value)}
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.wetAreaPercentage.label}
+                    placeholder={inputStrings.wetAreaPercentage.placeholder}
+                    value={percentual_area_molhada}
+                    onChangeText={(value) => setpercentual_area_molhada(value)}
+                  />
+                </View>
+                <View>
+
+                  <Input
+                    label={inputStrings.shadedAreaPercentage.label}
+                    placeholder={inputStrings.shadedAreaPercentage.placeholder}
+                    value={percentual_area_sombreada}
+                    onChangeText={(value) => setPercentual_area_sombreada(value)}
+                  />
+                </View>
               </>
             )}
 
