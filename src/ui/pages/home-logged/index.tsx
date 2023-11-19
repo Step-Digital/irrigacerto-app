@@ -292,8 +292,13 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
 
 
   useEffect(() => {
-    setOptions({ gestureEnabled: false });
-  }, [setOptions]);
+    // disable swipe
+    navigation.getParent()?.setOptions({ gestureEnabled: false });
+    // re-enable swipe after going back
+    return () => {
+      navigation.getParent()?.setOptions({ gestureEnabled: true });
+    };
+  }, []);
 
   const getValue = (irrigationValue, time) => {
     const hours = Number(time.split(':')[0])

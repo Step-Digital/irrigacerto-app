@@ -72,6 +72,14 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
     validate()
   }, [email, password]);
 
+  useEffect(() => {
+    // disable swipe
+    navigation.getParent()?.setOptions({ gestureEnabled: false });
+    // re-enable swipe after going back
+    return () => {
+      navigation.getParent()?.setOptions({ gestureEnabled: true });
+    };
+  }, []);
 
   return (
     <>
