@@ -62,11 +62,8 @@ type BombProps = {
 
 type SystemsProps = {
   nome: string;
-  eficiencia_irrigacao: number;
-  area_total_plantio: number;
   quantidade_setores: number;
   tipo_irrigacao: string;
-  nome_setor: string;
   area_irrigada: number;
   espacamento_linha: number;
   coeficiente_uniformidade: number;
@@ -326,11 +323,8 @@ export const Properties: React.FC<PropertiesProps> = ({
 
   const sumbitValuesSystem = {
     nome,
-    eficiencia_irrigacao: Number(eficiencia_irrigacao),
-    area_total_plantio: Number(area_total_plantio),
     quantidade_setores: Number(quantidade_setores),
-    tipo_irrigacao,
-    nome_setor,
+    tipo_irrigacao: tipo_irrigacao === 'Aspersão Convencional' ? 2 : 1,
     area_irrigada: Number(area_irrigada),
     espacamento_linha: Number(espacamento_linha),
     coeficiente_uniformidade: Number(coeficiente_uniformidade),
@@ -393,8 +387,6 @@ export const Properties: React.FC<PropertiesProps> = ({
     );
 
   if (isLoading && isLoadingItems) return <Text>Carregando...</Text>;
-
-  console.log("allItems", JSON.stringify(allItems, null, 2));
 
   return (
     <>
@@ -1150,8 +1142,6 @@ export const Properties: React.FC<PropertiesProps> = ({
                   />
                 </View>
 
-                {console.log('tipo_irrigacao', tipo_irrigacao)}
-
                 {tipo_irrigacao === "Aspersão Convencional" && (
                   <>
                     <Input
@@ -1323,7 +1313,7 @@ export const Properties: React.FC<PropertiesProps> = ({
 
                 {propertyData &&
                   findGround()[0].sistema_irrigacao.map((item) => {
-                    if (item.tipo_irrigacao === "Aspersão Convencional") {
+                    if (item.tipo_irrigacao === 2) {
                       return (
                         <S.CardContainer key={item.id_sistema_irrigacao}>
                           <S.CardContent>
@@ -1337,7 +1327,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                             <S.InfoText>
                               Tipo de Irrigação:{" "}
                               <S.InfoTextBold>
-                                {item.tipo_irrigacao}
+                              {item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}
                               </S.InfoTextBold>
                             </S.InfoText>
                             <S.InfoText>
@@ -1392,7 +1382,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                       );
                     }
                     if (
-                      item.tipo_irrigacao === "Microaspersão ou Gotejamento"
+                      item.tipo_irrigacao === 1
                     ) {
                       return (
                         <S.CardContainer key={item.id_sistema_irrigacao}>
@@ -1407,7 +1397,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                             <S.InfoText>
                               Tipo de Irrigação:{" "}
                               <S.InfoTextBold>
-                                {item.tipo_irrigacao}
+                              {item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}
                               </S.InfoTextBold>
                             </S.InfoText>
                             <S.InfoText>

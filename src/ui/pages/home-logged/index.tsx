@@ -149,8 +149,6 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     precipitacao: Number(newPreciptation),
   };
 
-  console.log('cultureSelected', JSON.stringify(cultureSelected, null, 2))
-
   const getAllDefaultValues = () => {
     setNome_cultura(cultureSelected.nome_cultura);
     setData_plantio(cultureSelected.data_plantio);
@@ -344,18 +342,14 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                   // setNewPreciptation={setNewPreciptation}
                                   precipitation={`${it.precipitacao}mm`}
                                   groundStatus={
-                                    dataCalc.data[index].status_solo || '0'
+                                    dataCalc?.data[index]?.status_solo || '0'
                                   }
                                   irrigationValue={
-                                    getValue(dataCalc.data[index]
-                                      .volume_aplicado_setor,  dataCalc.data[index]
-                                      .tempo_irrigacao_sugerido_area_setor || "---" )
+                                    getValue(dataCalc?.data[index]?.volume_aplicado_setor,  dataCalc?.data[index]?.tempo_irrigacao_sugerido_area_setor || "---" )
                                   } 
 
                                   irrigationValueTotal={
-                                    getValue(dataCalc.data[index]
-                                      .volume_aplicado_area_total,  dataCalc.data[index]
-                                      .tempo_irrigacao_sugerido_area_total || "---" )
+                                    getValue(dataCalc?.data[index]?.volume_aplicado_area_total,  dataCalc?.data[index]?.tempo_irrigacao_sugerido_area_total || "---" )
                                   }
                                   getCulture={() => {
                                     setCultureSelected({

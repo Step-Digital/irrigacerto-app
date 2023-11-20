@@ -99,7 +99,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
     area_total_plantio,
     quantidade_setores,
     tipo_irrigacao,
-    nome_setor,
     area_irrigada,
     espacamento_linha,
     coeficiente_uniformidade,
@@ -294,15 +293,6 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                 <View>
 
                   <Input
-                    label={inputStrings.sectorName.label}
-                    placeholder={inputStrings.sectorName.placeholder}
-                    value={nome_setor}
-                    onChangeText={(value) => setNome_setor(value)}
-                  />
-                </View>
-                <View>
-
-                  <Input
                     label={inputStrings.irrigatedArea.label}
                     placeholder={inputStrings.irrigatedArea.placeholder}
                     value={area_irrigada}
@@ -389,6 +379,8 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                 {strings.SystemInfo.addButtonn}
               </Typography>
             </S.AddButton>
+
+          
 
             {dataSystems &&
               dataSystems.data.map((item) => {
