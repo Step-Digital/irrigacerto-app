@@ -300,10 +300,21 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
 
   const getValue = (id) => {
     const data = dataCalc?.data?.find(it => it.id_cultura === id)
-    console.log('datadasdsa', JSON.stringify(data, null, 2))
     const hours = Number(data?.tempo_irrigacao_sugerido_area_setor?.split(':')[0])
     const minutes = Number(data?.tempo_irrigacao_sugerido_area_setor?.split(':')[1])
-    return `${moment().hour(hours).format('HH')}:${moment().hour(minutes).format('HH')} Horas / ${data?.data?.volume_aplicado_setor ? data?.data?.volume_aplicado_setor : 0} L`
+    return `${moment().hour(hours || 0).format('HH')}:${moment().minutes(minutes || 0).format('mm')} Horas / ${data?.volume_aplicado_setor ? data?.volume_aplicado_setor.toFixed(2) : 0} L`
+  }
+
+  const getTotalValue = (id) => {
+    const data = dataCalc?.data?.find(it => it.id_cultura === id)
+    const hours = Number(data?.tempo_irrigacao_sugerido_area_total?.split(':')[0])
+    const minutes = Number(data?.tempo_irrigacao_sugerido_area_total?.split(':')[1])
+    return `${moment().hour(hours || 0).format('HH')}:${moment().minutes(minutes || 0).format('mm')} Horas / ${data?.volume_aplicado_area_total ? data?.volume_aplicado_area_total.toFixed(2) : 0} L`
+  }
+
+  const getStatusGround = (id) => {
+    const data = dataCalc?.data?.find(it => it.id_cultura === id)
+    return data?.status_solo
   }
 
   // console.log('getValue', getValue(32))
@@ -346,14 +357,14 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                   // setNewPreciptation={setNewPreciptation}
                                   precipitation={`${it.precipitacao}mm`}
                                   groundStatus={
-                                    dataCalc?.data[index]?.status_solo || '0'
+                                   getStatusGround(item?.id_cultura) || '0'
                                   }
                                   irrigationValue={
                                     getValue(item?.id_cultura) || '---'
                                   } 
 
                                   irrigationValueTotal={
-                                    getValue(item?.id_cultura) || '---'
+                                    getTotalValue(item?.id_cultura) || '---'
                                   }
                                   getCulture={() => {
                                     setCultureSelected({
