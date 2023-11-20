@@ -298,14 +298,15 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     };
   }, []);
 
-  const getValue = (irrigationValue, time, id) => {
-    const data = dataCalc.data.find(it => it.id_cultura === id)
-    const hours = Number(time.split(':')[0])
-    const minutes = Number(time.split(':')[1])
-    return `${moment().hour(hours).format('HH')}:${moment().hour(minutes).format('HH')} Horas / ${irrigationValue ? irrigationValue : 0} L`
+  const getValue = (id) => {
+    const data = dataCalc?.data?.find(it => it.id_cultura === id)
+    console.log('datadasdsa', JSON.stringify(data, null, 2))
+    const hours = Number(data?.tempo_irrigacao_sugerido_area_setor?.split(':')[0])
+    const minutes = Number(data?.tempo_irrigacao_sugerido_area_setor?.split(':')[1])
+    return `${moment().hour(hours).format('HH')}:${moment().hour(minutes).format('HH')} Horas / ${data?.data?.volume_aplicado_setor ? data?.data?.volume_aplicado_setor : 0} L`
   }
 
-  console.log('allData', JSON.stringify(allData, null, 2))
+  // console.log('getValue', getValue(32))
 
   return (
     <>
@@ -329,7 +330,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                         <View key={Math.floor(Math.random() * Date.now())}>
                           {showProperties === it.id_propriedade &&
                             it.cultura &&
-                            it.cultura.map((item) => {
+                            it.cultura.map((item, index) => {
                               return (
                                 <CultureCard
                                   key={Math.floor(Math.random() * Date.now())}
@@ -348,11 +349,11 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                     dataCalc?.data[index]?.status_solo || '0'
                                   }
                                   irrigationValue={
-                                    getValue(dataCalc?.data[index]?.volume_aplicado_setor,  dataCalc?.data[index]?.tempo_irrigacao_sugerido_area_setor || "---" )
+                                    getValue(item?.id_cultura) || '---'
                                   } 
 
                                   irrigationValueTotal={
-                                    getValue(dataCalc?.data[index]?.volume_aplicado_area_total,  dataCalc?.data[index]?.tempo_irrigacao_sugerido_area_total || "---" )
+                                    getValue(item?.id_cultura) || '---'
                                   }
                                   getCulture={() => {
                                     setCultureSelected({
