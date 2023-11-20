@@ -444,17 +444,20 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
                   onChangeText={(value) => setArea_plantio(value)}
                 />
               </View>
-              <Input
-                label={inputStrings.stage.label}
-                placeholder={inputStrings.stage.placeholder}
-                value={estagio_colheita}
-                onChangeText={(value) => setEstagio_colheita(value)}
-                editable={false}
-              />
+              <View>
+
+                <Input
+                  label={inputStrings.stage.label}
+                  placeholder={inputStrings.stage.placeholder}
+                  value={estagio_colheita}
+                  onChangeText={(value) => setEstagio_colheita(value)}
+                  editable={false}
+                />
+              </View>
               <Select
                 label={inputStrings.property.label}
                 touchableText={inputStrings.property.placeholder}
-                setValue={() => {}}
+                setValue={() => { }}
                 data={properties}
                 setId={setId_propriedade}
                 stateValue={null}
@@ -462,7 +465,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
               <Select
                 label={inputStrings.groundType.label}
                 touchableText={inputStrings.groundType.placeholder}
-                setValue={() => {}}
+                setValue={() => { }}
                 setId={setId_solo}
                 data={grounds}
                 stateValue={null}
@@ -470,7 +473,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
               <Select
                 label={inputStrings.bomb.label}
                 touchableText={inputStrings.bomb.placeholder}
-                setValue={() => {}}
+                setValue={() => { }}
                 setId={setId_motobomba}
                 data={bombs}
                 stateValue={null}
@@ -478,7 +481,7 @@ export const CultureInfo: React.FC<CultureInfoProps> = ({
               <Select
                 label={inputStrings.irrigationSystem.label}
                 touchableText={inputStrings.irrigationSystem.placeholder}
-                setValue={() => {}}
+                setValue={() => { }}
                 setId={setId_sistema_irrigacao}
                 data={systems}
                 stateValue={null}

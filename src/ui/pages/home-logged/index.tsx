@@ -298,11 +298,14 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
     };
   }, []);
 
-  const getValue = (irrigationValue, time) => {
+  const getValue = (irrigationValue, time, id) => {
+    const data = dataCalc.data.find(it => it.id_cultura === id)
     const hours = Number(time.split(':')[0])
     const minutes = Number(time.split(':')[1])
     return `${moment().hour(hours).format('HH')}:${moment().hour(minutes).format('HH')} Horas / ${irrigationValue ? irrigationValue : 0} L`
   }
+
+  console.log('allData', JSON.stringify(allData, null, 2))
 
   return (
     <>
