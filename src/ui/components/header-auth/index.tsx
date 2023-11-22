@@ -7,12 +7,15 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationProps } from "../../routes/types/StackNavigationProps";
 import { Typography } from "../../components/typography";
 
+import * as S from './styles'
+
 export const HeaderAuth: React.FC<{
   hiddenBackButton?: boolean;
-}> = ({ hiddenBackButton }) => {
+  isLogin?: boolean;
+}> = ({ hiddenBackButton, isLogin }) => {
   const navigation = useNavigation<NavigationProps>();
   return (
-    <View style={styles.container}>
+    <S.Container isLogin={isLogin}>
       {!hiddenBackButton && (
         <Button
           bg-color="transparent"
@@ -23,7 +26,7 @@ export const HeaderAuth: React.FC<{
           }}
         >
           <Typography
-            color="neutral-4"
+            color="pure-white"
             size="normal"
             weight="bold"
             style={{
@@ -35,15 +38,9 @@ export const HeaderAuth: React.FC<{
           </Typography>
         </Button>
       )}
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          paddingHorizontal: 16,
-        }}
-      >
+      <S.ContainerImg>
         <Image
-          source={require("../../../../assets/newlogo-dark.png")}
+          source={require("../../../../assets/newlogo-white.png")}
           contentFit="contain"
           transition={1000}
           style={{
@@ -51,14 +48,7 @@ export const HeaderAuth: React.FC<{
             height: 200,
           }}
         />
-      </View>
-    </View>
+      </S.ContainerImg>
+    </S.Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    marginTop: 42
-  },
-});

@@ -58,45 +58,55 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
           <ActivityIndicator size={"large"} color={"#00344A"} />
         )} */}
         {/* {!autoLogin.isLoading && ( */}
-          <>
-            <View
-              style={{
-                paddingHorizontal: 16,
-              }}
-            >
+        <>
+          <View
+            style={{
+              paddingHorizontal: 16,
+            }}
+          >
+            <Image
+              style={localStyles.sponsorsImage}
+              source={require("../../../../assets/sponsors.png")}
+              placeholder={"Sponsors"}
+              contentFit="fill"
+              transition={1000}
+            />
+            <Typography color="gray-8" size="small" weight="regular" style={{ textAlign: 'center', marginTop: 12, fontSize: 14 }}>
+              Desenvolvido por
+            </Typography>
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+
               <Image
-                style={localStyles.sponsorsImage}
-                source={require("../../../../assets/sponsors.png")}
-                placeholder={"Sponsors"}
-                contentFit="fill"
+                source={require("../../../../assets/Incaper.png")}
+                contentFit="contain"
                 transition={1000}
-              />
-              <Typography color="gray-8" size="large" weight="regular" style={{ textAlign: 'center', marginTop: 12 }}>
-                Desenvolvido por&nbsp;
-                <Typography color="gray-8" size="large" weight="bold" style={{ textAlign: 'center' }}>
-                  Incaper
-                </Typography>
+                style={{
+                  width: 100,
+                  height: 40,
+                  
+                }}
+                />
+                </View>
+          </View>
+          <S.StyledActions>
+            <Button
+              bg-color="positive"
+              onPress={() => navigation.navigate("Signup")}
+            >
+              <Typography color="pure-white" size="large" weight="bold">
+                {strings.userNotLoggedIn.createAccount}
               </Typography>
-            </View>
-            <S.StyledActions>
-              <Button
-                bg-color="positive"
-                onPress={() => navigation.navigate("Signup")}
-              >
-                <Typography color="pure-white" size="large" weight="bold">
-                  {strings.userNotLoggedIn.createAccount}
-                </Typography>
-              </Button>
-              <Button
-                bg-color="transparent"
-                onPress={() => navigation.navigate("Login")}
-              >
-                <Typography color="neutral-4" size="large" weight="bold">
-                  {strings.userNotLoggedIn.haveRegistration}
-                </Typography>
-              </Button>
-            </S.StyledActions>
-          </>
+            </Button>
+            <Button
+              bg-color="transparent"
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Typography color="neutral-4" size="large" weight="bold">
+                {strings.userNotLoggedIn.haveRegistration}
+              </Typography>
+            </Button>
+          </S.StyledActions>
+        </>
         {/* )} */}
       </S.StyledContent>
       {/* {autoLogin.isError && (

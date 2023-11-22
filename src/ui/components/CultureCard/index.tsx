@@ -101,7 +101,7 @@ export const CultureCard: React.FC = ({
           contentFit="cover"
         />
         <S.TextContainer>
-        <Typography
+          <Typography
             style={{
               textAlign: "left",
               fontFamily: "Poppins-bold",
@@ -111,7 +111,7 @@ export const CultureCard: React.FC = ({
             size="normal"
             weight="medium"
           >
-           {cultureTitle}
+            {cultureTitle}
           </Typography>
           <Typography
             style={{
@@ -123,9 +123,9 @@ export const CultureCard: React.FC = ({
             size="normal"
             weight="medium"
           >
-           {cultureName} 
+            {cultureName}
           </Typography>
-          
+
           <Typography
             style={{
               textAlign: "left",
@@ -255,8 +255,8 @@ export const CultureCard: React.FC = ({
                 onChangeText={(value) => setNewPreciptation(value)}
                 inputMode="numeric"
               />
-              <S.EditButton 
-                disabled={newPreciptation.length === 0} 
+              <S.EditButton
+                disabled={newPreciptation.length === 0}
                 actve={newPreciptation.length !== 0}
                 onPress={() => editProperty.mutate()}
               >
@@ -289,51 +289,51 @@ export const CultureCard: React.FC = ({
           >
             Status do Solo:
           </Typography>
-          
-          {groundStatus === '0'  && (
+
+          {groundStatus === '0' && (
             <Typography
-            style={{
-              textAlign: "left",
-              fontFamily: "Poppins-bold",
-              fontSize: 16,
-              marginTop: 10,
-            }}
-            color="negative"
-            size="normal"
-            weight="medium"
-          >
-            {groundStatus}mm
-          </Typography>
+              style={{
+                textAlign: "left",
+                fontFamily: "Poppins-bold",
+                fontSize: 16,
+                marginTop: 10,
+              }}
+              color="negative"
+              size="normal"
+              weight="medium"
+            >
+              {groundStatus}mm
+            </Typography>
           )}
           {Number(groundStatus) > 0 && (
             <Typography
-            style={{
-              textAlign: "left",
-              fontFamily: "Poppins-bold",
-              fontSize: 16,
-              marginTop: 10,
-            }}
-            color="positive"
-            size="normal"
-            weight="medium"
-          >
-            +{groundStatus.toFixed(2)}mm
-          </Typography>
-          )} 
-          {groundStatus && Number(groundStatus) < 0 &&(
+              style={{
+                textAlign: "left",
+                fontFamily: "Poppins-bold",
+                fontSize: 16,
+                marginTop: 10,
+              }}
+              color="positive"
+              size="normal"
+              weight="medium"
+            >
+              +{groundStatus.toFixed(2)}mm
+            </Typography>
+          )}
+          {groundStatus && Number(groundStatus) < 0 && (
             <Typography
-            style={{
-              textAlign: "left",
-              fontFamily: "Poppins-bold",
-              fontSize: 16,
-              marginTop: 10,
-            }}
-            color="negative"
-            size="normal"
-            weight="medium"
-          >
-            {groundStatus}mm
-          </Typography>
+              style={{
+                textAlign: "left",
+                fontFamily: "Poppins-bold",
+                fontSize: 16,
+                marginTop: 10,
+              }}
+              color="negative"
+              size="normal"
+              weight="medium"
+            >
+              {groundStatus}mm
+            </Typography>
           )}
         </S.StatusGroundContainer>
       </S.StatusContainer>

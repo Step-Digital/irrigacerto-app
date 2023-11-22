@@ -82,14 +82,16 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
   }, []);
 
   return (
-    <>
-      <HeaderAuth />
+    <View style={{
+      flex: 1,
+      backgroundColor: "#FFF",
+    }}>
+      <HeaderAuth isLogin={true} />
       <View
         style={{
           flex: 1,
           paddingHorizontal: 16,
-
-          backgroundColor: "#FFF",
+          marginTop: 32
         }}
       >
         <Input
@@ -165,6 +167,6 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
           Bottomsheet
         </Typography>
       </BottomSheet>
-    </>
+    </View>
   );
 };

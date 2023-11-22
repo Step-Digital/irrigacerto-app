@@ -33,7 +33,7 @@ export const StyledLogoContainer = styled.View`
 
 export const StyledContent = styled.View`
   ${({ theme }) => css`
-    padding-top: 50px;
+    padding-top: 30px;
     flex: 1;
     position: relative;
   `}
@@ -46,7 +46,7 @@ export const StyledActions = styled.View`
     padding-left: 25px;
     padding-right: 25px;
 
-    bottom: 15px;
+    bottom: 10px;
     width: 100%;
   `}
 `;
