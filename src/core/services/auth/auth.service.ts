@@ -7,6 +7,7 @@ import { GetTokenModel, LoginModel, SignupModel } from "../../models/auth";
 import { AuthDomain } from "../../domain/auth.domain";
 import { AuthRepository } from "../../repositories/auth/auth.repository";
 import { RequestPasswordResetModel } from "../../models/auth/request-password-reset.model";
+import { ResetPasswordDTO } from "../../dtos/auth/reset-password.dto";
 
 export class AuthService implements AuthDomain {
   constructor(private readonly authRepository: AuthRepository) {}
@@ -55,13 +56,12 @@ export class AuthService implements AuthDomain {
     }
   }
 
-  async resetPassword(params: SignupDTO): Promise<SignupModel> {
-    return {
-      data: {
-        accessToken: "",
-        refreshToken: "",
-      },
-    };
+  async resetPassword(params: ResetPasswordDTO): Promise<SignupModel> {
+    try {
+      return await this.authRepository.resetPassword(params);
+    } catch (error) {
+      return error;
+    }
   }
 
   async logout(): Promise<any> {

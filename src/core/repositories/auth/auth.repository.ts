@@ -60,9 +60,11 @@ export class AuthRepository implements AuthDomain {
     };
   }
 
-  async resetPassword(params: RequestPasswordResetDTO): Promise<any> {
-    const { data } = await this.httpClient.post(
-      "/auth/request-password-reset",
+  async resetPassword(params: ResetPasswordDTO): Promise<any> {
+    const {
+      data: { data },
+    } = await this.httpClient.post(
+      "/auth/reset-password",
       params
     );
     return {

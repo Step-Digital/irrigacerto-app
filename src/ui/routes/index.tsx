@@ -8,6 +8,7 @@ import { HomeLogged } from "../pages/home-logged";
 import { SignupScreen } from "../pages/signup";
 import { ResetPasswordScreen } from "../pages/reset-password";
 import { MakeSignup } from "../../core/main/factories/pages/signup";
+import { MakeResetPassword } from "../../core/main/factories/pages/reset-password";
 import { MakeNewProperty } from "../../core/main/factories/pages/newProperty/newProperty.factory";
 import { MakeGroundInfo } from "../../core/main/factories/pages/GroundInfo/groundInfo.factory";
 import { MakeBombInfo } from "../../core/main/factories/pages/bombInfo/bombInfo.factory";
@@ -36,7 +37,7 @@ export const GlobalRoutes: React.FC = () => {
       <Stack.Screen name="Login" component={MakeLogin} />
       <Stack.Screen options={{ gestureEnabled: false }} name="HomeLogged" component={MakeHomeLogged} />
       <Stack.Screen name="Signup" component={MakeSignup} />
-      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+      <Stack.Screen name="ResetPassword" component={MakeResetPassword} />
       <Stack.Screen name="NewProperty" component={MakeNewProperty} />
       <Stack.Screen name="GroundInfo" component={MakeGroundInfo} />
       <Stack.Screen name="BombInfo" component={MakeBombInfo} />

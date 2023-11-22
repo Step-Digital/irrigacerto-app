@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { HeaderAuth } from "../../components/header-auth";
+import { HeaderAuthReset } from "../../components/header-auth-reset";
 import { AuthDomain } from "../../../core/domain/auth.domain";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View, TextInput } from "react-native";
 import { defaultTheme } from "../../theme/default";
 import { Typography } from "../../components/typography";
 import { Input } from "../../components/input";
@@ -9,18 +10,31 @@ import { Button } from "../../components/button";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationProps } from "../../routes/types/StackNavigationProps";
+import { ShowToast } from "../../components/toast";
 
 export type ResetPasswordProps = {
   auth: AuthDomain;
 };
 
+
 export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const navigation = useNavigation<NavigationProps>();
 
+  const submitValues = {
+    email
+  }
+
+  const submitCodeValues = {
+    token: String(code),
+    newPassword
+  }
+
   const onRequestResetPassword = useMutation({
-    mutationFn: () => auth.requestPasswordReset({ email }),
+    mutationFn: () => auth.requestPasswordReset(submitValues),
     onSuccess: (data) => {
       console.log(`REQUEST ${data}`);
       setStep(1);
@@ -30,9 +44,18 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
     },
   });
 
-  const FirstStep = () => {
-    return (
-      <View style={styles.container}>
+  const onResetPassword = useMutation({
+    mutationFn: () => auth.resetPassword(submitCodeValues),
+    onError: (err) => {
+      setStep(0);
+    },
+  });
+
+  return (
+    <View style={{ backgroundColor: '#fff',  flex: 1}}>
+      {step === 0 && <HeaderAuth hiddenBackButton={step !== 0} isLogin />}
+      {step !== 0 && <HeaderAuthReset hiddenBackButton={step !== 0} isLogin />}
+      {step === 0 && <View style={styles.container}>
         <Typography
           style={styles.title}
           size="large"
@@ -41,9 +64,15 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
         >
           Informe o e-mail cadastrado para alterar sua senha
         </Typography>
-        <Input label="E-mail" placeholder="Informe o e-mail cadastrado" />
+        <Input
+          label="E-mail"
+          placeholder="email@email.com.br"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={(e) => setEmail(e)}
+        />
         <Button
-          onPress={() => setStep(1)}
+          onPress={() => onRequestResetPassword.mutate()}
           bg-color="positive"
           style={{
             marginTop: 30,
@@ -53,12 +82,8 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
             Receber codigo de verificação
           </Typography>
         </Button>
-      </View>
-    );
-  };
-  const SecondStep = () => {
-    return (
-      <View style={styles.container}>
+      </View>}
+      {step === 1 &&  <View style={styles.container}>
         <Typography
           style={styles.title}
           size="large"
@@ -76,7 +101,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
           Digite o campo no campo abaixo para seguir adiante! Não esqueça de
           chechar a caixa de SPAM, as vezes a mensagem pode estar lá.
         </Typography>
-        <Input label="Código de verificação" placeholder="Informe o código" />
+        <Input label="Código de verificação" placeholder="Informe o código" value={code}  onChangeText={(e) => setCode(e)} />
         <Button
           bg-color="positive"
           onPress={() => setStep(2)}
@@ -88,12 +113,8 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
             Validar código
           </Typography>
         </Button>
-      </View>
-    );
-  };
-  const ThirdStep = () => {
-    return (
-      <View style={styles.container}>
+      </View>}
+      {step === 2 && <View style={styles.container}>
         <Typography
           style={styles.title}
           size="large"
@@ -102,10 +123,10 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
         >
           Informe sua nova senha
         </Typography>
-        <Input label="Senha" placeholder="Informe sua nova senha" />
+        <Input secureTextEntry label="Senha" placeholder="Informe sua nova senha" value={newPassword} onChangeText={(value) => setNewPassword(value)} />
         <Button
           bg-color="positive"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => onResetPassword.mutate()}
           style={{
             marginTop: 30,
           }}
@@ -114,17 +135,14 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
             Alterar senha
           </Typography>
         </Button>
-      </View>
-    );
-  };
-
-  return (
-    <>
-      <HeaderAuth hiddenBackButton={step !== 0} />
-      {step === 0 && <FirstStep />}
-      {step === 1 && <SecondStep />}
-      {step === 2 && <ThirdStep />}
-    </>
+      </View>}
+      {onResetPassword.isSuccess && (
+        <>
+          <ShowToast message="Senha alterada com sucesso" />
+          {navigation.navigate("Login")}
+        </>
+      )}
+    </View>
   );
 };
 
@@ -136,6 +154,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 15,
+    marginTop: 32,
   },
   subTitle: {
     marginBottom: 15,
