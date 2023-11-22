@@ -213,11 +213,11 @@ export default {
         placeholder: 'Modelo...'
       },
       power: {
-        label: 'Potência (w)',
+        label: 'Potência (Cv)',
         placeholder: 'Ex: 500'
       },
       flowRate: {
-        label: 'Vazão Máxima (m³/ha)',
+        label: 'Vazão Máxima (m³/h)',
         placeholder: 'Ex: 500 '
       },
       consumption: {

@@ -329,8 +329,8 @@ export const Properties: React.FC<PropertiesProps> = ({
     espacamento_linha: Number(espacamento_linha),
     coeficiente_uniformidade: Number(coeficiente_uniformidade),
     eficiencia_sistema: Number(eficiencia_sistema),
-    vazao_aspressor: Number(vazao_aspressor),
-    espacamento_aspressor: Number(espacamento_aspressor),
+    vazao_asperssor: Number(vazao_aspressor),
+    espacamento_asperssor: Number(espacamento_aspressor),
     vazao_emissor: Number(vazao_emissor),
     espacamento_emissor: Number(espacamento_emissor),
     percentual_area_molhada: Number(percentual_area_molhada),
@@ -521,15 +521,15 @@ export const Properties: React.FC<PropertiesProps> = ({
                                       </S.InfoTextBold>
                                     </S.InfoText>
                                     <S.InfoText>
-                                      Capacidade:{" "}
+                                      CC:{" "}
                                       <S.InfoTextBold>
                                         {item.capacidade_campo}%
                                       </S.InfoTextBold>
                                     </S.InfoText>
                                   </View>
-                                  <View>
+                                  <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
                                     <S.InfoText>
-                                      P. de Murcha:{" "}
+                                      PMP:{" "}
                                       <S.InfoTextBold>
                                         {item.ponto_murcha}%
                                       </S.InfoTextBold>
@@ -537,7 +537,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                                     <S.InfoText>
                                       Densidade:{" "}
                                       <S.InfoTextBold>
-                                        {item.densidade}g/m²
+                                        {item.densidade} g/cm³
                                       </S.InfoTextBold>
                                     </S.InfoText>
                                   </View>
@@ -596,33 +596,13 @@ export const Properties: React.FC<PropertiesProps> = ({
                                       <S.InfoText>
                                         Potência:{" "}
                                         <S.InfoTextBold>
-                                          {item.potencia}w
-                                        </S.InfoTextBold>
-                                      </S.InfoText>
-                                      <S.InfoText>
-                                        Consumo:{" "}
-                                        <S.InfoTextBold>
-                                          {item.consumo}kw/h
-                                        </S.InfoTextBold>
-                                      </S.InfoText>
-                                    </View>
-                                    <View>
-                                      <S.InfoText>
-                                        Modelo:{" "}
-                                        <S.InfoTextBold>
-                                          {item.modelo}
+                                          {item.potencia}Cv
                                         </S.InfoTextBold>
                                       </S.InfoText>
                                       <S.InfoText>
                                         Vazão:{" "}
                                         <S.InfoTextBold>
-                                          {item.vazao_maxima}m²/ha
-                                        </S.InfoTextBold>
-                                      </S.InfoText>
-                                      <S.InfoText>
-                                        Valor/kw:{" "}
-                                        <S.InfoTextBold>
-                                          R${item.valor_kw},00
+                                          {item.vazao_maxima}m³/h
                                         </S.InfoTextBold>
                                       </S.InfoText>
                                     </View>
@@ -675,33 +655,15 @@ export const Properties: React.FC<PropertiesProps> = ({
                                   <S.SectioContent>
                                     <View>
                                       <S.InfoText>
-                                        Eficiência:{" "}
-                                        <S.InfoTextBold>
-                                          {item.eficiencia_irrigacao}%
-                                        </S.InfoTextBold>
-                                      </S.InfoText>
-                                      <S.InfoText>
                                         Setores:{" "}
                                         <S.InfoTextBold>
                                           {item.quantidade_setores}
                                         </S.InfoTextBold>
                                       </S.InfoText>
                                       <S.InfoText>
-                                        Área:{" "}
-                                        <S.InfoTextBold>
-                                          {item.area_total_plantio}m²
-                                        </S.InfoTextBold>
-                                      </S.InfoText>
-                                      <S.InfoText>
                                         Tipo:{" "}
                                         <S.InfoTextBold>
                                           {item.tipo_irrigacao === 2 ? 'Aspersão Convencional' : 'Microaspersão ou Gotejamento'}
-                                        </S.InfoTextBold>
-                                      </S.InfoText>
-                                      <S.InfoText>
-                                        Nome do Setor:{" "}
-                                        <S.InfoTextBold>
-                                          {item.nome_setor}
                                         </S.InfoTextBold>
                                       </S.InfoText>
                                       <S.InfoText>
@@ -718,9 +680,9 @@ export const Properties: React.FC<PropertiesProps> = ({
                                           </S.InfoTextBold>
                                         </S.InfoText>
                                       )}
-                                      {item.vazao_aspressor !== 0 && (
+                                      {item.vazao_asperssor !== 0 && item.tipo_irrigacao === 2  && (
                                         <S.InfoText>
-                                          Vazão do aspressor:{" "}
+                                          Vazão do aspersor:{" "}
                                           <S.InfoTextBold>
                                             {item.espacamento_aspressor}L/h
                                           </S.InfoTextBold>
@@ -734,11 +696,19 @@ export const Properties: React.FC<PropertiesProps> = ({
                                           </S.InfoTextBold>
                                         </S.InfoText>
                                       )}
-                                      {item.espacamento_aspressor !== 0 && (
+                                      {item.espacamento_asperssor !== 0 && item.tipo_irrigacao === 2 && (
                                         <S.InfoText>
-                                          Esp. entre aspressores:{" "}
+                                          Esp. entre aspersores:{" "}
                                           <S.InfoTextBold>
                                             {item.espacamento_aspressor}m
+                                          </S.InfoTextBold>
+                                        </S.InfoText>
+                                      )}
+                                       {item.espacamento_linha !== 0 && (
+                                        <S.InfoText>
+                                          Esp. entre linhas:{" "}
+                                          <S.InfoTextBold>
+                                            {item.espacamento_linha}m
                                           </S.InfoTextBold>
                                         </S.InfoText>
                                       )}
@@ -754,7 +724,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                                           {item.eficiencia_sistema}%
                                         </S.InfoTextBold>
                                       </S.InfoText>
-                                      {item.percentual_area_molhada !== 0 && (
+                                      {item.percentual_area_molhada !== 0 && item.tipo_irrigacao !== 2 && (
                                         <S.InfoText>
                                           Percentual de área molhada:{" "}
                                           <S.InfoTextBold>
@@ -762,7 +732,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                                           </S.InfoTextBold>
                                         </S.InfoText>
                                       )}
-                                      {item.percentual_area_sombreada !== 0 && (
+                                      {item.percentual_area_sombreada !== 0 && item.tipo_irrigacao !== 2 && (
                                         <S.InfoText>
                                           Percentual de área sombreada:{" "}
                                           <S.InfoTextBold>
@@ -1024,12 +994,12 @@ export const Properties: React.FC<PropertiesProps> = ({
                         </S.InfoText>
                         <S.InfoText>
                           Potência:{" "}
-                          <S.InfoTextBold>{item.potencia}w</S.InfoTextBold>
+                          <S.InfoTextBold>{item.potencia}Cv</S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Vazão Máxima:{" "}
                           <S.InfoTextBold>
-                            {item.vazao_maxima}m³/ha
+                            {item.vazao_maxima}m³/h
                           </S.InfoTextBold>
                         </S.InfoText>
                       </S.CardContent>
@@ -1339,13 +1309,13 @@ export const Properties: React.FC<PropertiesProps> = ({
                             <S.InfoText>
                               Vazão do Aspersor:{" "}
                               <S.InfoTextBold>
-                                {item.vazao_aspressor}L/H
+                                {item.vazao_asperssor}L/H
                               </S.InfoTextBold>
                             </S.InfoText>
                             <S.InfoText>
                               Espaçamento entre Aspersores:{" "}
                               <S.InfoTextBold>
-                                {item.espacamento_aspressor}m
+                                {item.espacamento_asperssor}m
                               </S.InfoTextBold>
                             </S.InfoText>
                             <S.InfoText>

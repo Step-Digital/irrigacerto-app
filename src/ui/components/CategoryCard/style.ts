@@ -20,5 +20,11 @@ export const Text = styled.Text`
     font-family: 'Poppins-bold';
     margin-left: 16px;
     z-index: 1;
+    background-color: ${theme.colors["positive"]};
+    text-align: center;
+    padding: 0 8px;
+    display: flex;
+    border-radius: 12px;
+    margin-bottom: 4px;
   `}
 `;

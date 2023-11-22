@@ -113,8 +113,8 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
     espacamento_linha: Number(espacamento_linha),
     coeficiente_uniformidade: Number(coeficiente_uniformidade),
     eficiencia_sistema: Number(eficiencia_sistema),
-    vazao_aspressor: Number(vazao_aspressor),
-    espacamento_aspressor: Number(espacamento_aspressor),
+    vazao_asperssor: Number(vazao_aspressor),
+    espacamento_asperssor: Number(espacamento_aspressor),
     vazao_emissor: Number(vazao_emissor),
     espacamento_emissor: Number(espacamento_emissor),
     percentual_area_molhada: Number(percentual_area_molhada),
@@ -408,13 +408,13 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                         <S.InfoText>
                           Vazão do Aspersor:{" "}
                           <S.InfoTextBold>
-                            {item.vazao_aspressor}L/H
+                            {item.vazao_asperssor}L/H
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Espaçamento entre Aspersores:{" "}
                           <S.InfoTextBold>
-                            {item.espacamento_aspressor}m
+                            {item.espacamento_asperssor}m
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>

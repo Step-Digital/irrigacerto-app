@@ -27,6 +27,7 @@ interface CultureCardProps {
   propertyService: NewPropertyDomain;
   propertySelected: any
   refetchCalc: any
+  cultureName: string
 }
 
 const ControlledTooltip: React.FC<TooltipProps> = (props) => {
@@ -60,7 +61,8 @@ export const CultureCard: React.FC = ({
   editPreciptation,
   propertyService,
   propertySelected,
-  refetchCalc
+  refetchCalc,
+  cultureName
   // newPreciptation,
   // setNewPreciptation
 }: CultureCardProps) => {
@@ -99,7 +101,7 @@ export const CultureCard: React.FC = ({
           contentFit="cover"
         />
         <S.TextContainer>
-          <Typography
+        <Typography
             style={{
               textAlign: "left",
               fontFamily: "Poppins-bold",
@@ -109,8 +111,21 @@ export const CultureCard: React.FC = ({
             size="normal"
             weight="medium"
           >
-            {cultureTitle}
+           {cultureTitle}
           </Typography>
+          <Typography
+            style={{
+              textAlign: "left",
+              fontFamily: "Poppins-regular",
+              fontSize: 14,
+            }}
+            color="gray-7"
+            size="normal"
+            weight="medium"
+          >
+           {cultureName} 
+          </Typography>
+          
           <Typography
             style={{
               textAlign: "left",

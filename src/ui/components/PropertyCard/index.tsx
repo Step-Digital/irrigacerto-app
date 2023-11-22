@@ -96,7 +96,7 @@ export const PropertyCard: React.FC = ({
         size="normal"
         weight="medium"
       >
-        Número de Solos ({grounds})
+        Solos ({grounds})
       </Typography>
       <Typography
         style={{
@@ -110,7 +110,7 @@ export const PropertyCard: React.FC = ({
         size="normal"
         weight="medium"
       >
-        Número de Motobomba ({bombs})
+        Motobombas ({bombs})
       </Typography>
       <Typography
         style={{
@@ -124,7 +124,7 @@ export const PropertyCard: React.FC = ({
         size="normal"
         weight="medium"
       >
-        Número de Sistemas de irrigação ({systems})
+        Sistemas de irrigação ({systems})
       </Typography>
       <Button
         bg-color="positive"

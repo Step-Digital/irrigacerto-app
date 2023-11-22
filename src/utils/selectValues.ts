@@ -16,7 +16,7 @@ export const groundTypes = [
   },
   {
     id: 2,
-    name: 'Argiloso Arenoso'
+    name: 'Argilo-arenoso'
   },
   {
     id: 3,

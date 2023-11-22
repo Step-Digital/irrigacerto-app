@@ -346,8 +346,9 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                 <CultureCard
                                   key={Math.floor(Math.random() * Date.now())}
                                   image={item.dados_cultura.image_url}
+                                  cultureName={item.dados_cultura.nome}
                                   cultureTitle={item.nome_cultura}
-                                  plantingDate={item.data_plantio}
+                                  plantingDate={item.data_plantio.split("-").reverse().join("/")}
                                   stage={item.estagio_colheita}
                                   propertyService={propertyService}
                                   propertySelected={propertySelected}
