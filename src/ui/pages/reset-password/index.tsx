@@ -98,8 +98,12 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
           color="neutral-4"
           weight="regular"
         >
-          Digite o campo no campo abaixo para seguir adiante! Não esqueça de
-          chechar a caixa de SPAM, as vezes a mensagem pode estar lá.
+          Digite o campo no campo abaixo para seguir adiante! Não esqueça de &nbsp;
+          <Typography  
+          size="large"
+          color="neutral-4"
+          weight="bold">
+          checar a caixa de SPAM</Typography>, as vezes a mensagem pode estar lá.
         </Typography>
         <Input label="Código de verificação" placeholder="Informe o código" value={code}  onChangeText={(e) => setCode(e)} />
         <Button
