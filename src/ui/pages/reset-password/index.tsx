@@ -98,7 +98,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordProps> = ({ auth }) => {
           color="neutral-4"
           weight="regular"
         >
-          Digite o campo no campo abaixo para seguir adiante! Não esqueça de &nbsp;
+          Digite o código no campo abaixo para seguir adiante! Não esqueça de &nbsp;
           <Typography  
           size="large"
           color="neutral-4"
