@@ -6,6 +6,7 @@ import { AxiosInstance } from "axios";
 import { RequestPasswordResetModel } from "../../models/auth/request-password-reset.model";
 import { ResetPasswordDTO } from "../../dtos/auth/reset-password.dto";
 import { CacheRepository } from "../cache/cache.repository";
+import { AsyncStorageStatic } from '@react-native-async-storage/async-storage';
 
 export class AuthRepository implements AuthDomain {
   constructor(

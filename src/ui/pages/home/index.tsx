@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "core-js/stable/atob";
 import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
 import * as S from "./style";
 import { StatusBar } from "expo-status-bar";
@@ -13,6 +14,11 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationProps } from "../../routes/types/StackNavigationProps";
 import { CacheDomain } from "../../../core/domain/cache.domain";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { jwtDecode } from "jwt-decode";
+import { API } from "../../../core/services/axios.service";
+
+
 
 type HomeProps = {
   auth: AuthDomain;
@@ -36,6 +42,33 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
   // useEffect(() => {
   //   autoLogin.mutate();
   // }, []);
+
+  function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
+  useEffect(() => {
+    AsyncStorage.getItem("@token").then((token) => {
+      (async () => {        
+        const accessToken = JSON.parse(token).refreshToken
+        console.log(accessToken)
+        await API.post("/auth/refresh", {
+          refreshToken: JSON.parse(token).refreshToken
+        }).then((newToken) => {
+          AsyncStorage.setItem("@token", JSON.stringify(newToken));
+          return navigation.navigate("HomeLogged");
+        });
+      })()
+    }).catch((error) => {
+      return navigation.navigate("Home");
+    })
+  }, [])
 
   return (
     <S.StyledView>
