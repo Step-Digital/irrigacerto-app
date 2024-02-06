@@ -56,6 +56,10 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
         key: "@token",
         value: data.data,
       });
+      await cache.set({
+        key: '@savedUser',
+        value: { email, password }
+      });
       navigation.navigate("HomeLogged");
     },
   });

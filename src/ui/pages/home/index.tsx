@@ -27,24 +27,15 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
   const [autoLoginLoading, setAutoLoadingLoading] = useState(false);
 
   useEffect(() => {
-    AsyncStorage.getItem("@token")
-      .then((token) => {
+    AsyncStorage.getItem("@savedUser")
+      .then((user) => {
         (async () => {
           setAutoLoadingLoading(true);
-          const refreshToken = JSON.parse(token).refreshToken;
-          const accessToken = JSON.parse(token).accessToken;
-          await API.post(
-            "/auth/refresh",
-            {
-              refreshToken,
-            },
-            {
-              headers: {
-                Authorization: "Bearer " + accessToken,
-              },
-            }
-          )
-            .then((newToken) => {
+          const userDataToLogin = JSON.parse(user);
+          await API.post('/auth/login', {
+            email: userDataToLogin.email,
+            password: userDataToLogin.password,
+          }).then((newToken) => {
               AsyncStorage.setItem(
                 "@token",
                 JSON.stringify(newToken.data.data)
@@ -54,7 +45,7 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
               setTimeout(() => {
                 setAutoLoadingLoading(false);
                 return navigation.navigate("HomeLogged");
-              }, 1000);
+              }, 1500);
             });
         })();
       })
