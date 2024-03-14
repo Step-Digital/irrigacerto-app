@@ -317,7 +317,7 @@ export const CultureCard: React.FC = ({
               size="normal"
               weight="medium"
             >
-              +{groundStatus.toFixed(2)}mm
+              +{Number(groundStatus).toFixed(1)}mm
             </Typography>
           )}
           {groundStatus && Number(groundStatus) < 0 && (
