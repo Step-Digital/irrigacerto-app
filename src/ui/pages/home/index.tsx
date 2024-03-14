@@ -26,38 +26,6 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
   const navigation = useNavigation<NavigationProps>();
   const [autoLoginLoading, setAutoLoadingLoading] = useState(false);
 
-  useEffect(() => {
-    AsyncStorage.getItem("@savedUser")
-      .then((user) => {
-        (async () => {
-          setAutoLoadingLoading(true);
-          const userDataToLogin = JSON.parse(user);
-          await API.post('/auth/login', {
-            email: userDataToLogin.email,
-            password: userDataToLogin.password,
-          }).then((newToken) => {
-              AsyncStorage.setItem(
-                "@token",
-                JSON.stringify(newToken.data.data)
-              );
-            })
-            .then(() => {
-              setTimeout(() => {
-                setAutoLoadingLoading(false);
-                return navigation.navigate("HomeLogged");
-              }, 1500);
-            });
-        })();
-      })
-      .catch((error) => {
-        setAutoLoadingLoading(false);
-        return navigation.navigate("Home");
-      })
-      .finally(() => {
-        setAutoLoadingLoading(false);
-      });
-  }, []);
-
   return (
     <S.StyledView>
       <StatusBar
