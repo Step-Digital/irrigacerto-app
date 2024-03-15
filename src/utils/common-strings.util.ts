@@ -6,7 +6,7 @@ export default {
   about: {
     header: 'Sobre o Projeto',
     title: 'Quem somos nós',
-    about: 'Em desenvolvimento...',
+    about: 'O aplicativo IrrigaCerto ES desenvolvido pelo Incaper e seus parceiros disponível para sistema Android, foi pensado para o pequeno produtor rural irrigante do estado do Espírito Santo que possui limitados recursos para acessar informações robustas sobre as condições de clima, solo ou para a contratação de serviços especializados para o manejo de irrigação em pequenas lavouras no estado do Espírito Santo. As informações fornecidas possibilitam o cadastro de diferentes áreas e culturas dentro de uma mesma propriedade com recomendações diferenciadas de irrigação para cada cultura. O aplicativo é uma ferramenta auxiliar para a tomada de decisão sobre o momento certo de irrigar. Alertamos para o fato de que o uso indevido das funcionalidades, a não compreensão das informações solicitadas ou o preenchimento incorreto dos dados solicitados podem gerar recomendações errôneas. Desta maneira, aconselhamos que o usuário procure um Engenheiro Agrônomo ou Técnico Agrícola de seu município para realizar o preenchimento de maneira corretas das informações solicitadas.',
     namesTitle: 'Nomes dos envolvidos',
     footer: 'Realização'
   },

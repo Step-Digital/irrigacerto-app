@@ -51,7 +51,9 @@ export class NewPropertyService implements NewPropertyDomain {
     try {
       console.log("ENTREI getAllCalcCulture PAPAI")
       const { token } = await this.authRepository.getToken();
-      return await this.newPropertyRepository.getAllCalcCulture(token);
+      const response = await this.newPropertyRepository.getAllCalcCulture(token);
+      console.log(JSON.stringify(response, null, 2))
+      return response;
     } catch (error) {
       console.log("CHORAAA getAllCalcCulture")
       console.log(error)

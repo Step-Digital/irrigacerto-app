@@ -290,7 +290,7 @@ export const CultureCard: React.FC = ({
             Status do Solo:
           </Typography>
 
-          {groundStatus === '0' && (
+          {groundStatus === 'Não irrigar' && (
             <Typography
               style={{
                 textAlign: "left",
@@ -302,10 +302,10 @@ export const CultureCard: React.FC = ({
               size="normal"
               weight="medium"
             >
-              {groundStatus}mm
+              {groundStatus}
             </Typography>
           )}
-          {Number(groundStatus) > 0 && (
+          {groundStatus === 'Irrigar' && (
             <Typography
               style={{
                 textAlign: "left",
@@ -317,24 +317,10 @@ export const CultureCard: React.FC = ({
               size="normal"
               weight="medium"
             >
-              +{Number(groundStatus).toFixed(1)}mm
+              {groundStatus}
             </Typography>
           )}
-          {groundStatus && Number(groundStatus) < 0 && (
-            <Typography
-              style={{
-                textAlign: "left",
-                fontFamily: "Poppins-bold",
-                fontSize: 16,
-                marginTop: 10,
-              }}
-              color="negative"
-              size="normal"
-              weight="medium"
-            >
-              {groundStatus}mm
-            </Typography>
-          )}
+
         </S.StatusGroundContainer>
       </S.StatusContainer>
       <S.FooterContainer>

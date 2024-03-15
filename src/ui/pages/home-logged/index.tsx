@@ -314,6 +314,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
 
   const getStatusGround = (id) => {
     const data = dataCalc?.data?.find(it => it.id_cultura === id)
+    console.log(`DATAS ${data?.status_solo}`)
     return data?.status_solo
   }
 
@@ -358,7 +359,7 @@ export const HomeLogged: React.FC<HomeLoggedProps> = ({
                                   // setNewPreciptation={setNewPreciptation}
                                   precipitation={`${it.precipitacao}mm`}
                                   groundStatus={
-                                   getStatusGround(item?.id_cultura) || '0'
+                                   getStatusGround(item?.id_cultura)
                                   }
                                   irrigationValue={
                                     getValue(item?.id_cultura) || '---'

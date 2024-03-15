@@ -14,6 +14,7 @@ import { FlashMessage } from "../../components/flash-message";
 import { BottomSheet } from "../../components/bottomsheet";
 import { HeaderAuth } from "../../components/header-auth";
 import { loginValidators } from '../../../utils/validators';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type LoginProps = {
   auth: AuthDomain;
@@ -84,6 +85,16 @@ export const LoginScreen: React.FC<LoginProps> = ({ auth, cache }) => {
       navigation.getParent()?.setOptions({ gestureEnabled: true });
     };
   }, []);
+
+  useEffect(() => {
+    AsyncStorage.getItem("@savedUser")
+      .then((user) => {
+        const userDataToLogin = JSON.parse(user);
+        setEmail(userDataToLogin.email);
+        setPassword(userDataToLogin.password);
+      })
+  }, []);
+
 
   return (
     <View style={{

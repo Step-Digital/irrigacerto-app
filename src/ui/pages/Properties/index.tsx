@@ -747,7 +747,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                           </>
                         )}
                     </S.SectionContainer>
-                    <Button
+                    {/* <Button
                       onPress={() =>
                         removeProperty.mutate(propertyData.id_propriedade)
                       }
@@ -771,7 +771,7 @@ export const Properties: React.FC<PropertiesProps> = ({
                       >
                         Apagar Propriedade
                       </Typography>
-                    </Button>
+                    </Button> */}
                   </ScrollView>
                 </S.ModalContainer>
               </Modal>

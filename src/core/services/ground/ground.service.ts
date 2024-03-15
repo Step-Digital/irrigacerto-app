@@ -36,7 +36,9 @@ export class GroundService implements GroundDomain {
     try {
       console.log("ENTREI PAPAI GROUNDS")
       const { token } = await this.authRepository.getToken();
-      return await this.groundRepository.getGrounds(token);
+      const response = await this.groundRepository.getGrounds(token);
+      console.log(JSON.stringify(response, null, 2))
+      return response;
     } catch (error) {
       console.log("CHORA GROUNDS")
       console.log(error)
