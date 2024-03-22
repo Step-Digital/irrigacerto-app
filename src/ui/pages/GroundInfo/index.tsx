@@ -219,15 +219,15 @@ export const GroundInfo: React.FC<GroundInfoProps> = ({
                   <S.InfoTitle>{item.tipo_solo}</S.InfoTitle>
                   <S.InfoText>
                     Capacidade de Campo:{" "}
-                    <S.InfoTextBold>{item.capacidade_campo}%</S.InfoTextBold>
+                    <S.InfoTextBold>{item.capacidade_campo}{" "}%</S.InfoTextBold>
                   </S.InfoText>
                   <S.InfoText>
                     Ponto de Murcha:{" "}
-                    <S.InfoTextBold>{item.ponto_murcha}%</S.InfoTextBold>
+                    <S.InfoTextBold>{item.ponto_murcha}{" "}%</S.InfoTextBold>
                   </S.InfoText>
                   <S.InfoText>
                     Densidade:{" "}
-                    <S.InfoTextBold>{item.densidade}g/m²</S.InfoTextBold>
+                    <S.InfoTextBold>{item.densidade}{" "}g/cm³</S.InfoTextBold>
                   </S.InfoText>
                 </S.CardContent>
                 <TouchableOpacity

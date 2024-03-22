@@ -402,37 +402,37 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                         <S.InfoText>
                           Área irrigada:{" "}
                           <S.InfoTextBold>
-                            {item.area_irrigada}m²
+                            {item.area_irrigada}{" "}m²
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Vazão do Aspersor:{" "}
                           <S.InfoTextBold>
-                            {item.vazao_asperssor}L/H
+                            {item.vazao_asperssor}{" "}L/H
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Espaçamento entre Aspersores:{" "}
                           <S.InfoTextBold>
-                            {item.espacamento_asperssor}m
+                            {item.espacamento_asperssor}{" "}m
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Espaçamento entre linhas:{" "}
                           <S.InfoTextBold>
-                            {item.espacamento_linha}m
+                            {item.espacamento_linha}{" "}m
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Coeficiente de Uniformidade CUC:{" "}
                           <S.InfoTextBold>
-                            {item.coeficiente_uniformidade}%
+                            {item.coeficiente_uniformidade}{" "}%
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Eficiência do Sistema:{" "}
                           <S.InfoTextBold>
-                            {item.eficiencia_sistema}%
+                            {item.eficiencia_sistema}{" "}%
                           </S.InfoTextBold>
                         </S.InfoText>
                       </S.CardContent>
@@ -464,49 +464,49 @@ export const SystemInfo: React.FC<SystemInfoProps> = ({
                         <S.InfoText>
                           Área irrigada:{" "}
                           <S.InfoTextBold>
-                            {item.area_irrigada}m²
+                            {item.area_irrigada}{" "}m²
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Vazão do Emissor:{" "}
                           <S.InfoTextBold>
-                            {item.vazao_emissor}L/H
+                            {item.vazao_emissor}{" "}L/H
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Espaçamento entre Emissores:{" "}
                           <S.InfoTextBold>
-                            {item.espacamento_emissor}m
+                            {item.espacamento_emissor}{" "}m
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Espaçamento entre linhas:{" "}
                           <S.InfoTextBold>
-                            {item.espacamento_linha}m
+                            {item.espacamento_linha}{" "}m
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Coeficiente de Uniformidade CUC:{" "}
                           <S.InfoTextBold>
-                            {item.coeficiente_uniformidade}%
+                            {item.coeficiente_uniformidade}{" "}%
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Eficiência do Sistema:{" "}
                           <S.InfoTextBold>
-                            {item.eficiencia_sistema}%
+                            {item.eficiencia_sistema}{" "}%
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Percentual de aŕea molhada:{" "}
                           <S.InfoTextBold>
-                            {item.percentual_area_molhada}%
+                            {item.percentual_area_molhada}{" "}%
                           </S.InfoTextBold>
                         </S.InfoText>
                         <S.InfoText>
                           Percentual de aŕea sombreada:{" "}
                           <S.InfoTextBold>
-                            {item.percentual_area_sombreada}%
+                            {item.percentual_area_sombreada}{" "}%
                           </S.InfoTextBold>
                         </S.InfoText>
                       </S.CardContent>

@@ -234,20 +234,6 @@ export const CultureCard: React.FC = ({
             </ControlledTooltip>
           </S.PrecipitationTextContainer>
           <S.PrecipitationInputContainer>
-            <Typography
-              style={{
-                textAlign: "left",
-                fontFamily: "Poppins-regular",
-                fontSize: 14,
-                marginHorizontal: 8,
-                marginBottom: 4
-              }}
-              color="gray-7"
-              size="normal"
-              weight="medium"
-            >
-              {precipitation}
-            </Typography>
             <S.PrecipitationEditContainer>
               <S.InputPrecipitation
                 placeholder="valor (mm)"

@@ -26,6 +26,20 @@ export const HomeScreen: React.FC<HomeProps> = ({ auth, cache }) => {
   const navigation = useNavigation<NavigationProps>();
   const [autoLoginLoading, setAutoLoadingLoading] = useState(false);
 
+  useEffect(() => {
+    AsyncStorage.getItem("@savedUser").then((user) => {
+      const userDataToLogin = JSON.parse(user);
+      if(user) {
+        return navigation.navigate("Login");
+      }
+      else {
+        return navigation.navigate("Home")      
+      }
+    }).catch(() => {
+      return navigation.navigate("Home")
+    })
+  }, [])
+
   return (
     <S.StyledView>
       <StatusBar
